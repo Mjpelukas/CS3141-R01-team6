@@ -1,5 +1,3 @@
-package test;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -17,7 +15,11 @@ public class LoginServlet extends HttpServlet {
 		//long term, this will call a separate that is in charge of checking if the username and password
 		//are in the database, and returning the appropriate information.
 		//honestly could also call a .php file for getting the mysql database stuff
-		if (username.equals("Maxim") && password.equals("1234")) {
+		//if (username.equals("Maxim") && password.equals("1234")) {
+		
+		Login log = new Login();
+		
+		if (log.loginTest(username, password)) {
 			//new location to be redirected
 			//location goes to "loggedIn.html" (a new web page)
 			// (if we wanted to keep the .php file we'd do "name.php" instead)
