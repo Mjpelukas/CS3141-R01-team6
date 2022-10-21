@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="flashcards.css" />
+</head>
+<body>
+    <div class="flash_container">
+        <div class="flashcard" id="flash1" onclick='document.getElementById("flash1").style.display = "none";
+document.getElementById("flash_b1").style.display = "inline-block"'>
+            <p> test front 1</p>
+        </div>
+        <div class="flash_back" id="flash_b1"
+             onclick='document.getElementById("flash1").style.display = "inline-block";
+document.getElementById("flash_b1").style.display = "none"'>
+            <p> test back 1 </p>
+        </div>
+
+
+        <div class="flashcard" id="flash2" onclick='document.getElementById("flash2").style.display = "none";
+document.getElementById("flash_b2").style.display = "inline-block"'>
+            <p> test front 2</p>
+        </div>
+        <div class="flash_back" id="flash_b2" onclick='document.getElementById("flash2").style.display = "inline-block";
+document.getElementById("flash_b2").style.display = "none"'>
+            <p> test back 2 </p>
+        </div>
+    </div>
+</body>
+</html>
