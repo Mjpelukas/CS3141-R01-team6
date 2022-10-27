@@ -10,24 +10,6 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>logoutForm</servlet-name>
-    <servlet-class>LogoutServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>logoutForm</servlet-name>
-    <url-pattern>/logout</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>createAccountForm</servlet-name>
-    <servlet-class>CreateAccountServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>createAccountForm</servlet-name>
-    <url-pattern>/createAccount</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
     <servlet-name>accountCreatedForm</servlet-name>
     <servlet-class>AccountCreationServlet</servlet-class>
   </servlet>
