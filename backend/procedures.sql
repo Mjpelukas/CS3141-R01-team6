@@ -7,7 +7,7 @@ drop procedure if exists createQuizQuestion;
 
 /* Create procedure SQL statements. */
 delimiter //
-create procedure createUser(email varchar(20), username varchar(30), user_password varchar(256))
+create procedure createUser(username varchar(30), email varchar(20), user_password varchar(256))
     begin
         insert into Users values(email, username, sha2(user_password, 256), 0);
     end//
@@ -21,9 +21,9 @@ create procedure createFlashcardSet(setName varchar(30), setOwner varchar(20), c
 delimiter ;
 
 delimiter //
-create procedure createFlashcard(term varchar(50), term_definition varchar(256), setName varchar(30), setOwner varchar(20))
+create procedure createFlashcard(term varchar(50), term_definition varchar(256), setName varchar(30))
     begin
-        insert into Flashcards values(term, term_definition, setName, setOwner);
+        insert into Flashcards values(term, term_definition, setName);
     end//
 delimiter ;
 
