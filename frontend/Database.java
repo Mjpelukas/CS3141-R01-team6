@@ -111,4 +111,40 @@ public class Database {
             return null;
 		} 
     }
+	
+	/** NEW STUFF **/
+	public ArrayList<String> viewFlashcardSets(String username)
+    {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try 
+        {
+            // Determine the MySQL statement to obtain the rows matching the provided set name and username. 
+            String query = "SELECT setName from Flashcards where username = ?";
+
+            // Use prepared statements to prevent SQL injection.
+            preparedStatement = connection.prepareStatement(query); 
+			preparedStatement.setString(1, username);  
+            resultSet = preparedStatement.executeQuery();
+            
+            // Iterate through each flashcard's term and definition to be entered in the HTML table.
+            ArrayList<String> sets = new ArrayList<String>();
+
+            while(resultSet.next())
+            {
+                String setName = resultSet.getString(1);
+                sets.add(setName);
+            }
+
+            return sets;
+        }
+        catch (SQLException exception)
+        { 
+			System.out.println("SQLException: " + exception.getMessage()); 
+			System.out.println("SQLState: " + exception.getSQLState()); 
+			System.out.println("VendorError: " + exception.getErrorCode()); 
+            return null;
+		} 
+    }
 }
