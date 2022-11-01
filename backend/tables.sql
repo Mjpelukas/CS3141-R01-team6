@@ -39,13 +39,13 @@ create table Quizzes
     quizOwner varchar(30),
     course varchar(10) not null,
     isPublic int default 0,
-    mastery int default 0,
     foreign key(quizOwner) references Users(username)
 );
 
+-- IDENTITY is the equivalent of AUTO_INCREMENT
 create table QuizQuestions
 (
-    question int primary key,
+    question int primary key IDENTITY,
     quizName varchar(30),
     questionType varchar(20) not null,
     prompt varchar(256) not null,
