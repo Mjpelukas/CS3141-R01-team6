@@ -7,10 +7,6 @@ public class Database {
     ResultSet resultSet = null;
 
     public static void main(String args[]) throws SQLException {
-    	Object temp = new Object();
-    	temp = null;
-    	System.gc();
-    	
     	Database database = new Database();
 
         database.connect();
