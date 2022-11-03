@@ -1,9 +1,7 @@
 import java.io.IOException;
-
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +11,6 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("login_username");
 		String password = request.getParameter("login_password");
 		
-		getServletContext().setAttribute("username", username);
 		//this is a temporary test, assuming username is "Maxim" and password is "1234"
 		//long term, this will call a separate that is in charge of checking if the username and password
 		//are in the database, and returning the appropriate information.
