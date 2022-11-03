@@ -11,9 +11,11 @@ public class AccountCreationServlet extends HttpServlet {
 		String username = request.getParameter("create_username");
 		String password = request.getParameter("create_password");
 		
+		request.setAttribute("username", username);
+		
 		Login log = new Login();
 		
-		if (log.addAccountToFile(username, password) == 0) {
+		if (log.addAccount(username, password) == true) {
 			//new location to be redirected
 			//location goes to "loggedIn.html" (a new web page)
 			// (if we wanted to keep the .php file we'd do "name.php" instead)
