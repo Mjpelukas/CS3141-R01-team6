@@ -1,0 +1,112 @@
+.body {
+	background-color:#dddddd;
+	text-align: center;
+}
+
+.buttonList{
+	margin: auto;
+	margin-top: 10%;
+    text-align: center;
+    border: none;
+    display: block;
+    width: 40%;
+    /**flex-direction: column;*/
+    padding: .2em;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+div form {
+	margin: auto;
+	margin-top: 10%;
+    text-align: center;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    justify-content: center;
+    align-items: center;
+}
+
+
+form > input {
+	text-align: left;
+	margin-top: 1em;
+	margin-bottom: 1em;
+    width: 30%;
+    border-radius: 6px;
+    border: solid;
+    border-color: gray;
+    padding: 16px 16px;
+    font-size: 18px
+}
+
+input[type=submit]:hover {
+	background-color: #017973;
+}
+
+input[type=button]:hover {
+	background-color: #017973;
+}
+
+button:hover {
+	background-color: #017973;
+}
+
+form > input[type=submit] {
+	text-align: center;
+	background-color: #028a83;
+	color:white;
+	border-radius: 3px;
+	border:none;
+	padding:15px 32px;
+	font-size: 16px;
+	width: 16em;
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+
+form > button{
+	text-align: left;
+	margin-top: 1em;
+	margin-bottom: 1em;
+    width: 30%;
+    border-radius: 6px;
+    border: solid;
+    border-color: gray;
+    padding: 16px 16px;
+    font-size: 18px;
+	
+	text-align: center;
+	background-color: #028a83;/*#016862;*/
+	color:white;
+	border-radius: 3px;
+	border:none;
+	padding: 15px 32px;
+	font-size: 16px;
+	width: 16em;
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+
+form > input[type=button] {
+	text-align: center;
+	background-color: #028a83;/*#016862;*/
+	color:white;
+	border-radius: 3px;
+	border:none;
+	padding: 15px 32px;
+	font-size: 16px;
+	width: 16em;
+	margin-top: .5em;
+	margin-bottom: .5em;
+}
+
+form > p{
+	color: #333333;
+	font-family: Arial, sans-serif;
+	font-size: 24px;
+}
