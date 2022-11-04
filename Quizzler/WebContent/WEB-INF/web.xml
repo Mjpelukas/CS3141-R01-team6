@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+<!--
+  <display-name>Quizzler</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+-->
+  <servlet>
+    <servlet-name>loginForm</servlet-name>
+    <servlet-class>LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginForm</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>accountCreatedForm</servlet-name>
+    <servlet-class>AccountCreationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>accountCreatedForm</servlet-name>
+    <url-pattern>/accountCreated</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>flashcardSets</servlet-name>
+    <servlet-class>GetSetsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flashcardSets</servlet-name>
+    <url-pattern>/sets</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>flashcardSet</servlet-name>
+    <servlet-class>GetFlashcards</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flashcardSet</servlet-name>
+    <url-pattern>/flashcards</url-pattern>
+  </servlet-mapping>
+</web-app>

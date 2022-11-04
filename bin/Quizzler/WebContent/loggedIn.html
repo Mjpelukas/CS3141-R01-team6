@@ -1,0 +1,42 @@
+<!--
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+	<body>
+    	<!-- <p>Hi you are now logged in (this is just a test shit web page)</p> -->	<!--
+    	<p>Hi you are now logged in. You can log out!</p>
+    	<form method="post" action="logout">
+    		<!-- <button name="Logout_Name" type="submit" value="Logout">Thing</button> -->		<!--
+    		<button name="Logout_Name" type="submit" value="Logout">Logout</button>
+        </form>
+        <form method="get" action="temporary">
+        	<button name="getFlashcardSetsName" type="submit" value="getFlashcardSets">Get your Flashcard Sets</button>
+        </form>
+	</body>
+</html>
+-->
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+	<h1 class="title">Quizzler</h1>
+	<h2 class="subheader">Menu</h2>
+	<body class="body">
+        <form method="get" action="sets">
+        	<button name="getFlashcardSetsName" type="submit" value="getFlashcardSets">Flashcard Sets</button>
+        </form>
+        <form>
+        	<button name="getFlashcardSetsName" type="submit" value="getFlashcardSets">Quizzes</button>
+        </form>
+        <form style="bottom:10px">
+        	<input type="button" style="background-color:#800003; margin-top: 40px;" value="Logout" onclick="window.location='base.jsp'" >
+        </form>
+	</body>
+</html>
