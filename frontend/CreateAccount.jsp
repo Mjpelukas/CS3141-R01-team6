@@ -4,18 +4,25 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
+		<link rel="stylesheet" type="text/css" href="styles.css" />
 		<title>Insert title here</title>
 	</head>
-	<body>
+	<body class="body">
+	<div>
 		<form method="post" action="accountCreated">
-			<label for="create_username">Create Username:</label>
-			<input name="create_username" type="text">
-			<label for="create_password">Create Password:</label>
-			<input name="create_password" type="password"/>
-			<input type="submit" value="CreateAccount" />
+			<!-- <label for="create_username">Create Username:</label> -->
+			<input name="create_username" type="text" placeholder="Username">
+			<!-- <label for="create_password">Create Password:</label> -->
+			<input name="create_password" type="password" placeholder="Password"/>
+			
+			<input name="confirm_password" type="password" placeholder="Confirm Password"/>
+			<p>${error}</p>			
+			<input type="submit" value="Create Account" />
+			<input type="button" value="Cancel" onclick="window.location='base.html'">
 		</form>
-		<form>
+		<!-- <form>
     		<input type="button" value="Cancel" onclick="window.location='base.html'">
-		</form>
+		</form>-->
+		</div>
 	</body>
 </html>
