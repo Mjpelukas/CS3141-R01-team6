@@ -7,6 +7,10 @@ public class Database {
     ResultSet resultSet = null;
 
     public static void main(String args[]) throws SQLException {
+    	Object temp = new Object();
+    	temp = null;
+    	System.gc();
+    	
     	Database database = new Database();
 
         database.connect();
@@ -89,6 +93,27 @@ public class Database {
     	statement.execute(insert);
     	
     	return authenticateLogin(username, password);
+    	
+    	
+    	}catch (SQLException exception) {
+            System.out.println("SQLException: " + exception.getMessage());
+            System.out.println("SQLState: " + exception.getSQLState());
+            System.out.println("VendorError: " + exception.getErrorCode());
+            return false;
+        }
+    }
+    
+    public boolean createFlashcardSet(String username, String setName) {
+    	try{
+    		String insert =
+    	
+    			"INSERT INTO FlashcardSets values('"
+    			+ setName + "', '" + username
+    			+ "', null, null, null);";
+    	
+    	Statement statement = connection.prepareStatement(insert);
+    	statement.execute(insert);
+    	return true;
     	
     	
     	}catch (SQLException exception) {

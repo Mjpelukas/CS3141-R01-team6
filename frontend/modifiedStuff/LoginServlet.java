@@ -19,20 +19,26 @@ public class LoginServlet extends HttpServlet {
 		//are in the database, and returning the appropriate information.
 		//honestly could also call a .php file for getting the mysql database stuff
 		//if (username.equals("Maxim") && password.equals("1234")) {
-		
+		String error = "";
 		Login log = new Login();
-		
-		if (log.loginTest(username, password)) {
+		if(username.equals("")) {
+			error = "Username is a required field.";
+		} else if(password.equals("")) {
+			error = "Password is a required field.";
+		} else if (log.loginTest(username, password)) {
 			//new location to be redirected
 			//location goes to "loggedIn.html" (a new web page)
 			// (if we wanted to keep the .php file we'd do "name.php" instead)
 			String site = new String("loggedIn.html");
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site); 
-		} else {
-			PrintWriter out = response.getWriter();
-			out.println("login incorrect");
-		}
+		} else error = "Username or password is incorrect.";
+		
+		request.setAttribute("error", error);
+		try {
+		request.getRequestDispatcher("base.jsp").forward(request, response);
+		} catch(Exception e) {}
+		
 	}
 	
 	public void doGet() {

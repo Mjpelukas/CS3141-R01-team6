@@ -45,5 +45,35 @@ public class GetSetsServlet extends HttpServlet {
 		            "</body>" +
 		         "</html>");**/
 	}
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		String setName = request.getParameter("setName");
+		String setDescription = request.getParameter("setDescription");
+		
+		System.out.println(setName);
+		
+		String username = (String) getServletContext().getAttribute("username");
+		
+		Database database = new Database();
+		database.connect();
+		database.createFlashcardSet(username, setName);
+		
+		
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		
+		String html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\" />\r\n"
+				+ "	<body class=\"body\">\r\n"
+				+ "    	<div>"
+				+ "<h1>Success!</h1>"
+				+ "<form method=\"get\" action=\"sets\" class=\"buttonList\">\r\n"
+		+ "        	<button name=\"getFlashcardSetsName\" type=\"submit\" value=\"getFlashcardSets\">Back</button>\r\n"
+		+ "        </form>";
+		
+		out.println(html);
+	
+		
+	}
 
 }

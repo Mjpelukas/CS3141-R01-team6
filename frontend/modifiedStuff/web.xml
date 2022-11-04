@@ -26,4 +26,14 @@
     <servlet-name>flashcardSets</servlet-name>
     <url-pattern>/sets</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>flashcardSet</servlet-name>
+    <servlet-class>GetFlashcards</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>flashcardSet</servlet-name>
+    <url-pattern>/flashcards</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

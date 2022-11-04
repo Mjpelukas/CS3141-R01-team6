@@ -32,12 +32,12 @@ public class AccountCreationServlet extends HttpServlet {
 				//new location to be redirected
 				//location goes to "loggedIn.html" (a new web page)
 				// (if we wanted to keep the .php file we'd do "name.php" instead)
-				String site = new String("base.html");
+				String site = new String("base.jsp");
 				response.setStatus(response.SC_MOVED_TEMPORARILY);
 				response.setHeader("Location", site); 			
 			} else {
 				PrintWriter out = response.getWriter();
-				out.println("login incorrect");			
+				out.println("something went wrong");			
 			}
 		}
 			
