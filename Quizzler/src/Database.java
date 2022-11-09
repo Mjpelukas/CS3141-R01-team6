@@ -164,8 +164,7 @@ public class Database {
 			preparedStatement.setString(1, username);
 			resultSet = preparedStatement.executeQuery();
 			
-			// Iterate through each flashcard's term and definition to be entered in the
-			// HTML table.
+			// Iterate through each flashcard set's name and add it to the arraylist
 			ArrayList<String> sets = new ArrayList<String>();
 			
 			while (resultSet.next()) {
@@ -185,11 +184,17 @@ public class Database {
 	
 	public boolean createFlashcard(String term, String term_definition, String setName, String setOwner) {
 		try {
+			
+			// TODO: Make sure this isn't vulnerable to sql injection
 			String insert = 
 					"INSERT INTO Flashcards values('" + term + "', '" + term_definition + "', '" + setName + "', '" + setOwner + "');";
 			
+			// Execute the statement to insert the flashcard into the databse
 			Statement statement = connection.prepareStatement(insert);
 			statement.execute(insert);
+			
+			
+			// TODO: ERROR Messages, shouldn't always work, should sometimes fail when the flashcard term is a repeat
 			
 			return true;
 		} catch (SQLException exception) {
