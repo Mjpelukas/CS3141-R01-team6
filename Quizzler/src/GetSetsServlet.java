@@ -53,23 +53,36 @@ public class GetSetsServlet extends HttpServlet {
 		         "</html>");**/
 	}
 	
+	
+	// This creates a new set for a specific user
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// Gets the info from the submit form
+		// TODO: Create isPublic paramater so we can implement the search feature
 		String setName = request.getParameter("setName");
 		String setDescription = request.getParameter("setDescription");
 		
-		System.out.println(setName);
+		// This was for testing
+		// System.out.println(setName);
 		
+		// Gets the session username
 		String username = (String) getServletContext().getAttribute("username");
 		
+		// Creates the flashcard
 		Database database = new Database();
 		database.connect();
+		
+		// TODO: Create error message for repeat set names, this is where it will be returned or thrown from
 		database.createFlashcardSet(username, setName);
 		getServletContext().setAttribute("setName", setName);
 		
+		
+		/* 
+		 * This might not be necessary. This basically outputs a success page with a back button.
+		 * The reason we have this is so that the back button can do a get action to update the sets page.
+		 * There's a probably a way to avoid this and just update the sets page and return there, but I couldn't figure it out.
+		 */
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		
-		
 		String html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\" />\r\n"
 				+ "	<body class=\"body\">\r\n"
 				+ "    	<div>"
