@@ -15,8 +15,16 @@
 		<form method="get" action="flashcards">
 			<input style="margin-bottom: 30px;" type="button" value="Create Set"
 				onclick="window.location='CreateSet.html'">
+			
+			<!-- setNames is a java arraylist, this takes it from context attributes
+			     and applies a for each loop on it, creating buttons for each. -->
 			<c:forEach items="${setNames}" var="item">
+				
+				<!-- the name for each button is set_name so that when it's submitted, the servlet
+				     can access the parameter by the identity "set_name" 
+ 				     The value which is shown to the user is set to item, which is the set name taken from the arraylist -->
 				<input type="submit" value="<c:out value = "${item}"/>" name="set_name"><br>
+				
 			</c:forEach>
 		</form>
 		<form>
