@@ -5,15 +5,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// This class predictably creates accounts
 public class AccountCreationServlet extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		// Gets the form parameters
 		String username = request.getParameter("create_username");
 		String password = request.getParameter("create_password");
 		String confirmPassword = request.getParameter("confirm_password");
 		request.setAttribute("username", username);
 		
 		Login log = new Login();
+		
+		// These are all the error messages for incorrectly inputted information
+		// TODO: An error message for when the username field is already taken, this will require
+		// code all the way through login.java down to database.java
 		String error = "";
 		if (username.equals("")) {
 			error = "Username is a required field.";
@@ -28,6 +36,7 @@ public class AccountCreationServlet extends HttpServlet {
 		} else if(!password.equals(confirmPassword)) {
 			error = "Passwords do not match.";
 		} else {
+			
 			if (log.addAccount(username, password) == true) {
 				//new location to be redirected
 				//location goes to "loggedIn.html" (a new web page)
@@ -41,6 +50,7 @@ public class AccountCreationServlet extends HttpServlet {
 			}
 		}
 		
+		// If there was an error, the error is communicated to the front-end through the attributes
 		if(!error.equals("")) {
 			request.setAttribute("error", error);
 			try {
