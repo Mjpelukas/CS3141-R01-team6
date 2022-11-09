@@ -8,22 +8,28 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetSetsServlet extends HttpServlet {
 	
+	
+	// Returns a list of all the set names for a given user
+	// Doesn't actually return that information but sets the context attribute "setnames"
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		// Get the session username
 		String username = (String) getServletContext().getAttribute("username");
+		
+		// Use that database to get the list of set names 
 		Database database = new Database();
 		database.connect();
 		ArrayList<String> setNames = database.viewFlashcardSets(username);
 		
-		
+		// Set the attribute so that the front end can access the set names 
 		request.setAttribute("setNames", setNames);
+		database.disconnect();
 		
 		try {
 			request.getRequestDispatcher("displaySets.jsp").forward(request, response);
 		} catch(Exception e) {}
-		database.disconnect();
 		
-		
-		
+				
 		/**
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
