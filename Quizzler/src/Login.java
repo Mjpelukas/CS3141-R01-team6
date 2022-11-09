@@ -33,6 +33,7 @@ public class Login {
 	
 	String usernameEntered, passwordEntered;
 	
+	/*
 	public int addAccountToFile(String usernameEntered, String passwordEntered) {
 		this.usernameEntered = usernameEntered;
 		this.passwordEntered = passwordEntered;
@@ -65,6 +66,7 @@ public class Login {
 		return 0;
 	}
 	
+	
 	private boolean checkIfNameExists(File file) {
 		try {
 			Scanner s = new Scanner(file);
@@ -84,7 +86,7 @@ public class Login {
 		return false;
 	}
 	
-	/*public boolean loginTest(String susername, String spassword) {
+	public boolean loginTest(String susername, String spassword) {
 		try {
 			FileReader fr = new FileReader("testing.txt");
 			Scanner s = new Scanner(fr);
@@ -108,10 +110,13 @@ public class Login {
 		return false;
 	}*/
 	
+	// Creates account using database.java
 	public boolean addAccount(String susername, String spassword) {
 		Database database = new Database();
 		database.connect();
 		
+		// TODO: Ideally, this will return an error string to an error error 
+		// instead of a boolean which will need to be communicated on the front end
 		boolean authenticated = database.createAccount(susername, spassword);
 		database.disconnect();
 		
@@ -120,6 +125,7 @@ public class Login {
 		return authenticated;
 	}
 	
+	// This logs the user in
 	public boolean loginTest(String susername, String spassword) {
 		Database database = new Database();
 		database.connect();
