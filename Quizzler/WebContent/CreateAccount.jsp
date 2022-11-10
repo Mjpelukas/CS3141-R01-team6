@@ -7,6 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="styles.css" />
 		<title>Insert title here</title>
 	</head>
+	<h1 class="title">Quizzler</h1>
+	<h2 class="subheader">Login Page</h2>
 	<body class="body">
 	<div>
 		<form method="post" action="accountCreated">

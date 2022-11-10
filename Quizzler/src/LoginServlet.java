@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site); 
 		} else {
-			String site = new String("base.html");
+			String site = new String("base.jsp");
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
 			PrintWriter out = response.getWriter();
