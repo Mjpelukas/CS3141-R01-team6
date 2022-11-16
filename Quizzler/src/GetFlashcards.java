@@ -40,7 +40,7 @@ public class GetFlashcards extends HttpServlet {
 		try {
 			// Sends to the next website. The request and response are forwarded so that the attributes stay
 			// (I'm only pretty sure that's how that works)
-			request.getRequestDispatcher("FlashcardView.jsp").forward(request, response);
+			request.getRequestDispatcher("FlashcardsView.jsp").forward(request, response);
 		} catch (Exception e) {}
 	}
 	
