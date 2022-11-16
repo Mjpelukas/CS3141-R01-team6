@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<link rel="stylesheet" type="text/css" href="styles.css" />
+		<link rel="stylesheet" type="text/css" href="Styling/styles.css" />
 		<title>Insert title here</title>
 	</head>
 	<h1 class="title">Quizzler</h1>
@@ -22,7 +22,7 @@
 			
 			<!-- Buttons -->
 			<input type="submit" value="Create Account" />
-			<input type="button" value="Cancel" onclick="window.location='base.jsp'">
+			<input type="button" value="Cancel" onclick="window.location='Home.jsp'">
 		</form>
 		</div>
 	</body>

@@ -2,7 +2,7 @@
 <html>
 	<head>
     	<meta charset="UTF-8">
-    	<link rel="stylesheet" type="text/css" href="styles.css" />
+    	<link rel="stylesheet" type="text/css" href="Styling/styles.css" />
 	</head>
 	
 	<!-- Testing new website format 
@@ -14,9 +14,9 @@
 
 	
 	<ul>
-			<li><a href=http://localhost:8080/Quizzler/base.jsp>Home</a></li>
-			<li><a href=http://localhost:8080/Quizzler/base.jsp>Search</a></li>
-			<li><a href=http://localhost:8080/Quizzler/base.jsp>About</a></li>
+			<li><a href=http://localhost:8080/Quizzler/Home.jsp>Home</a></li>
+			<li><a href=http://localhost:8080/Quizzler/Home.jsp>About</a></li>
+			<li><a href=http://localhost:8080/Quizzler/Home.jsp>Search</a></li>
 			<li><a style="float:right" href=http://localhost:8080/Quizzler/CreateAccount.jsp>Sign Up</a></li>
 		</ul>
 	

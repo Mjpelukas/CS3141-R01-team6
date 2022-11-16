@@ -26,7 +26,7 @@ public class GetSetsServlet extends HttpServlet {
 		database.disconnect();
 		
 		try {
-			request.getRequestDispatcher("displaySets.jsp").forward(request, response);
+			request.getRequestDispatcher("SetsView.jsp").forward(request, response);
 		} catch(Exception e) {}
 		
 				
@@ -83,7 +83,7 @@ public class GetSetsServlet extends HttpServlet {
 		 */
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\" />\r\n"
+		String html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"Styling/styles.css\" />\r\n"
 				+ "	<body class=\"body\">\r\n"
 				+ "    	<div>"
 				+ "<h1>Success!</h1>"

@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="styles.css" />
-<link rel="stylesheet" type="text/css" href="flashcards.css" />
+<link rel="stylesheet" type="text/css" href="Styling/styles.css" />
+<link rel="stylesheet" type="text/css" href="Styling/flashcards.css" />
 <title>Sets</title>
 </head>
 <h1 class="title">Quizzler</h1>
@@ -22,7 +22,7 @@
 				<c:forEach items="${terms}" var="term">
 					<tr>
 						<td><c:out value="${term[0]}" /></td>
-						<td><c:out value="${term[1]}" /></td>
+						<td><c:out value="${term[1]}"/></td>
 					</tr>
 				</c:forEach>
 			</table>

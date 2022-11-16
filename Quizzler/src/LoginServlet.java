@@ -26,14 +26,14 @@ public class LoginServlet extends HttpServlet {
 			getServletContext().setAttribute("username", username);
 			
 			//new location to be redirected
-			//location goes to "loggedIn.html" (a new web page)
+			//location goes to "LoggedIn.html" (a new web page)
 			// (if we wanted to keep the .php file we'd do "name.php" instead)
 			//String site = new String("loggedIn.jsp");
-			String site = new String("loggedIn.html");
+			String site = new String("LoggedIn.html");
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site); 
 		} else {
-			String site = new String("base.jsp");
+			String site = new String("Home.jsp");
 			response.setStatus(response.SC_MOVED_TEMPORARILY);
 			response.setHeader("Location", site);
 			PrintWriter out = response.getWriter();

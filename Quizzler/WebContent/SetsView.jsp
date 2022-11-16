@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="styles.css" />
+<link rel="stylesheet" type="text/css" href="Styling/styles.css" />
 <title>Sets</title>
 </head>
 <h1 class="title">Quizzler</h1>
@@ -29,7 +29,7 @@
 		</form>
 		<form>
 			<input style="background-color: #800003; margin-top: 40px;"
-				type="button" value="Back" onclick="window.location='loggedIn.html'">
+				type="button" value="Back" onclick="window.location='LoggedIn.html'">
 		</form>
 	</div>
 </body>

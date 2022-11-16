@@ -78,7 +78,7 @@ public class GetFlashcards extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		
-		String html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles.css\" />\r\n"
+		String html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"Styling/styles.css\" />\r\n"
 				+ "	<body class=\"body\">\r\n"
 				+ "    	<div>"
 				+ "<h1>Success!</h1>"
