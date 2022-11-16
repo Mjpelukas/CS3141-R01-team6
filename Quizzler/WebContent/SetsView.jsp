@@ -29,7 +29,7 @@
 		</form>
 		<form>
 			<input style="background-color: #800003; margin-top: 40px;"
-				type="button" value="Back" onclick="window.location='LoggedIn.html'">
+				type="button" value="Back" onclick="window.location='Menu.html'">
 		</form>
 	</div>
 </body>

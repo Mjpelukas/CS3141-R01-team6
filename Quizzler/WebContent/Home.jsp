@@ -13,12 +13,12 @@
 	<body class="body">
 
 	
-	<ul>
+	<!-- <ul>
 			<li><a href=http://localhost:8080/Quizzler/Home.jsp>Home</a></li>
 			<li><a href=http://localhost:8080/Quizzler/Home.jsp>About</a></li>
 			<li><a href=http://localhost:8080/Quizzler/Home.jsp>Search</a></li>
 			<li><a style="float:right" href=http://localhost:8080/Quizzler/CreateAccount.jsp>Sign Up</a></li>
-		</ul>
+		</ul> -->
 	
 	<h1 class="title">Quizzler</h1>
 	<h2 class="subheader">Login Page</h2>
