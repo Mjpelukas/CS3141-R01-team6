@@ -23,8 +23,8 @@ public class Database {
 		try {
 			// TODO: obtain the real URL, username, and password for the database
 			
-			connection = DriverManager.getConnection("jdbc:mysql://classdb.it.mtu.edu/mareuchl", "mareuchl",
-					"Password1!");
+			connection = DriverManager.getConnection("jdbc:mysql://remotemysql.com/0MkLwGAyw5", "0MkLwGAyw5",
+					"wVY3yXffPP");
 			// System.out.println("Connected to the database!");
 		} catch (SQLException exception) {
 			System.out.println(exception.getMessage());
