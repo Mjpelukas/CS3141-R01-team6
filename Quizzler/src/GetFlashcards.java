@@ -20,6 +20,21 @@ public class GetFlashcards extends HttpServlet {
 		// Get's username from session context
 		String username = (String) getServletContext().getAttribute("username");
 		
+		if(request.getParameter("delete") != null) {
+			String setName = (String) request.getParameter("delete");
+			
+			
+			Database database = new Database();
+			database.connect();
+
+			database.deleteFlashcardSet(setName, username);
+			try {
+			request.getRequestDispatcher("SetsView.jsp").forward(request, response);
+			} catch(Exception e){}
+			return;
+			
+		}
+		
 		// Gets the requested set name from the website submit parameter
 		String setName = request.getParameter("set_name");
 

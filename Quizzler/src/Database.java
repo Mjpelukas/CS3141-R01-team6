@@ -15,6 +15,7 @@ public class Database {
 		// TODO: Obtain the username and password from the POST method when the user
 		// inputs login info.
 		// database.authenticateLogin("[USERNAME]", "[PASSWORD]");
+		
 		database.disconnect();
 	}
 	
@@ -23,8 +24,8 @@ public class Database {
 		try {
 			// TODO: obtain the real URL, username, and password for the database
 			
-			connection = DriverManager.getConnection("jdbc:mysql://classdb.it.mtu.edu/mareuchl", "mareuchl",
-					"Password1!");
+			connection = DriverManager.getConnection("jdbc:mysql://remotemysql.com/0MkLwGAyw5", "0MkLwGAyw5",
+					"wVY3yXffPP");
 			// System.out.println("Connected to the database!");
 		} catch (SQLException exception) {
 			System.out.println(exception.getMessage());
@@ -50,7 +51,7 @@ public class Database {
 	// Authenticate a user's credentials when they attempt to log in.
 	public boolean authenticateLogin(String username, String password) {
 		PreparedStatement preparedStatement = null;
-		
+		// System.out.println(username + "|" + password);
 		try {
 			// Determine the MySQL statement to obtain the row matching the entered username
 			// and password.
@@ -75,7 +76,7 @@ public class Database {
 		try {
 			String insert =
 					
-					"INSERT INTO Users values('" + username + "', null, sha2('" + password + "', 256), false);";
+					"INSERT INTO Users values('" + username + "', null, sha2('" + password + "', 256));";
 			
 			Statement statement = connection.prepareStatement(insert);
 			// TODO: Create optional email functionality
@@ -94,11 +95,11 @@ public class Database {
 		}
 	}
 
-	public boolean createFlashcardSet(String username, String setName) {
+	public boolean createFlashcardSet(String username, String setName, String description, String isPublic) {
 		try {
 			String insert =
-					
-					"INSERT INTO FlashcardSets values('" + setName + "', '" + username + "', null, null, null);";
+					"INSERT INTO FlashcardSets values('" + setName + "', '"
+					 + username + "', '" + description + "', null, " + isPublic + ", null);";
 			
 			Statement statement = connection.prepareStatement(insert);
 			statement.execute(insert);
@@ -182,7 +183,8 @@ public class Database {
 		}
 	}
 	
-	public boolean createFlashcard(String term, String term_definition, String setName, String setOwner) {
+	public boolean createFlashcard
+	(String term, String term_definition, String setName, String setOwner) {
 		try {
 			
 			// TODO: Make sure this isn't vulnerable to sql injection
@@ -242,6 +244,7 @@ public class Database {
 		}
 	}
 
+	
 	// Delete a flashcard set provided a flashcard set name.
 	public boolean deleteFlashcardSet(String setName, String username) {
 		PreparedStatement preparedStatement = null;
@@ -249,15 +252,15 @@ public class Database {
 		
 		try 
 		{
+			
 			// Create the SQL statement to delete the row matching the given parameters.
-			String query = "DELETE FROM FlashcardSets WHERE setName = ? AND setOwner = ?";
+			String query = "DELETE FROM FlashcardSets "
+					+ "WHERE setName = '" + setName + "' AND setOwner = '" + username + "';";
 
 			// Use prepared statements to prevent SQL injection.
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, setName);
-			preparedStatement.setString(2, username);
-			resultSet = preparedStatement.executeQuery();
-			
+			//connection.createPreparedStatement().execute(query);
+			Statement stmt = connection.createStatement();
+			stmt.executeUpdate(query);
 			return true;
 		} 
 		catch (SQLException exception) 
@@ -485,70 +488,69 @@ public class Database {
 			return false;
 		}
 	}
+	
+	//temporary to prevent errors
+	public void takeQuiz(String one, String two){}
+	
+	
+	// Search for another user's flashcard set by its description.
+	// Fuzzy Search: SELECT * FROM `TABLE` WHERE MATCH(`COLUMN`) AGAINST("SEARCH" IN NATURAL LANGUAGE MODE);
+	public boolean searchFlashcardSetDescription(String description)
+	{
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+ 	try 
+		{
+			// Create the SQL query to perform a fuzzy search of the flashcard set's description.
+			String query = "SELECT setName, username FROM FlashcardSets WHERE MATCH('setName') AGAINST(? IN NATURAL LANGUAGE MODE) AND isPublic = 1";
+		// 		// Use prepared statements to prevent SQL injection.
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, description);
+			resultSet = preparedStatement.executeQuery();
+ 		// View the flashcard set if it exists.
+ 		if(resultSet != null)
+ 			viewFlashcardSet(resultSet.getString(1), resultSet.getString(2));
+ 		return true;
+	} 
+	catch (SQLException exception) 
+ 	{
+ 		System.out.println("SQLException: " + exception.getMessage());
+ 		System.out.println("SQLState: " + exception.getSQLState());
+		System.out.println("VendorError: " + exception.getErrorCode());
+ 		return false;
+ 	}
+ }
 
-	// // Search for another user's flashcard set by its description.
-	// // Fuzzy Search: SELECT * FROM `TABLE` WHERE MATCH(`COLUMN`) AGAINST("SEARCH" IN NATURAL LANGUAGE MODE);
-	// public boolean searchFlashcardSetDescription(String description)
-	// {
-	// 	PreparedStatement preparedStatement = null;
-	// 	ResultSet resultSet = null;
-		
-	// 	try 
-	// 	{
-	// 		// Create the SQL query to perform a fuzzy search of the flashcard set's description.
-	// 		String query = "SELECT setName, username FROM FlashcardSets WHERE MATCH('setName') AGAINST(? IN NATURAL LANGUAGE MODE) AND isPublic = 1";
+ // Search for another user's quiz by its description.
+ // Fuzzy Search: SELECT * FROM `TABLE` WHERE MATCH(`COLUMN`) AGAINST("SEARCH" IN NATURAL LANGUAGE MODE);
+	public boolean searchQuizDescription(String description)
+	{
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+	 	try 
+		{
+	 		// Create the SQL query to perform a fuzzy search of the quiz's description.
+	 		String query = "SELECT quizName, username FROM Quizzes WHERE MATCH('quizName') AGAINST(? IN NATURAL LANGUAGE MODE) AND isPublic = 1";
+	
+	 		// Use prepared statements to prevent SQL injection.
+	 		preparedStatement = connection.prepareStatement(query);
+	 		preparedStatement.setString(1, description);
+	 		resultSet = preparedStatement.executeQuery();
+	 		
+	 		// Take the quiz if it exists.
+	 		if(resultSet != null)
+	 			takeQuiz(resultSet.getString(1), resultSet.getString(2));
+
+	 		return true;
+	 	} 
+	 	catch (SQLException exception) 
+	 	{
+	 		System.out.println("SQLException: " + exception.getMessage());
+	 		System.out.println("SQLState: " + exception.getSQLState());
+			System.out.println("VendorError: " + exception.getErrorCode());
 			
-	// 		// Use prepared statements to prevent SQL injection.
-	// 		preparedStatement = connection.prepareStatement(query);
-	// 		preparedStatement.setString(1, description);
-	// 		resultSet = preparedStatement.executeQuery();
-
-	// 		// View the flashcard set if it exists.
-	// 		if(resultSet != null)
-	// 			viewFlashcardSet(resultSet.getString(1), resultSet.getString(2));
-
-	// 		return true;
-	// 	} 
-	// 	catch (SQLException exception) 
-	// 	{
-	// 		System.out.println("SQLException: " + exception.getMessage());
-	// 		System.out.println("SQLState: " + exception.getSQLState());
-	// 		System.out.println("VendorError: " + exception.getErrorCode());
-			
-	// 		return false;
-	// 	}
-	// }
-
-	// // Search for another user's quiz by its description.
-	// // Fuzzy Search: SELECT * FROM `TABLE` WHERE MATCH(`COLUMN`) AGAINST("SEARCH" IN NATURAL LANGUAGE MODE);
-	// public boolean searchQuizDescription(String description)
-	// {
-	// 	PreparedStatement preparedStatement = null;
-	// 	ResultSet resultSet = null;
-		
-	// 	try 
-	// 	{
-	// 		// Create the SQL query to perform a fuzzy search of the quiz's description.
-	// 		String query = "SELECT quizName, username FROM Quizzes WHERE MATCH('quizName') AGAINST(? IN NATURAL LANGUAGE MODE) AND isPublic = 1";
-			
-	// 		// Use prepared statements to prevent SQL injection.
-	// 		preparedStatement = connection.prepareStatement(query);
-	// 		preparedStatement.setString(1, description);
-	// 		resultSet = preparedStatement.executeQuery();
-
-	// 		// Take the quiz if it exists.
-	// 		if(resultSet != null)
-	// 			takeQuiz(resultSet.getString(1), resultSet.getString(2));
-
-	// 		return true;
-	// 	} 
-	// 	catch (SQLException exception) 
-	// 	{
-	// 		System.out.println("SQLException: " + exception.getMessage());
-	// 		System.out.println("SQLState: " + exception.getSQLState());
-	// 		System.out.println("VendorError: " + exception.getErrorCode());
-			
-	// 		return false;
-	// 	}
-	// }
+	 		return false;
+	 	}
+	 }
+	 
 }

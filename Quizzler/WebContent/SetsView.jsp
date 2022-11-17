@@ -11,9 +11,8 @@
 <h1 class="title">Quizzler</h1>
 <h2 class="subheader">Sets</h2>
 <body class="body">
-	<div class="buttonList">
-		<form method="get" action="flashcards">
-			<input style="margin-bottom: 30px;" type="button" value="Create Set"
+		
+			<input class="button" style="margin-bottom: 30px;" type="button" value="Create Set"
 				onclick="window.location='CreateSet.html'">
 			
 			<!-- setNames is a java arraylist, this takes it from context attributes
@@ -23,14 +22,18 @@
 				<!-- the name for each button is set_name so that when it's submitted, the servlet
 				     can access the parameter by the identity "set_name" 
  				     The value which is shown to the user is set to item, which is the set name taken from the arraylist -->
-				<input type="submit" value="<c:out value = "${item}"/>" name="set_name"><br>
+				<form method="get" action="flashcards">
+				<input type="submit" value="<c:out value = "${item}"/>" name="set_name">
 				
+				<button 
+					style="background-color: #770000; width: 40px; height: 40px; padding: 0;" 
+					type="submit" value="<c:out value = "${item}"/>" name="delete"></button><br>
+				</form>
 			</c:forEach>
-		</form>
+		
 		<form>
 			<input style="background-color: #800003; margin-top: 40px;"
 				type="button" value="Back" onclick="window.location='Menu.html'">
 		</form>
-	</div>
 </body>
 </html>

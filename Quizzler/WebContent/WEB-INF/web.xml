@@ -46,4 +46,13 @@
     <servlet-name>flashcardSet</servlet-name>
     <url-pattern>/flashcards</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>deleteSets</servlet-name>
+    <servlet-class>DeleteSetsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteSets</servlet-name>
+    <url-pattern>/deleteSet</url-pattern>
+  </servlet-mapping>
 </web-app>

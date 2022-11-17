@@ -60,6 +60,7 @@ public class GetSetsServlet extends HttpServlet {
 		// TODO: Create isPublic paramater so we can implement the search feature
 		String setName = request.getParameter("setName");
 		String setDescription = request.getParameter("setDescription");
+		String isPublic = request.getParameter("isPublic") == null ? "false" : "true";
 		
 		// This was for testing
 		// System.out.println(setName);
@@ -72,7 +73,7 @@ public class GetSetsServlet extends HttpServlet {
 		database.connect();
 		
 		// TODO: Create error message for repeat set names, this is where it will be returned or thrown from
-		database.createFlashcardSet(username, setName);
+		database.createFlashcardSet(username, setName, setDescription, isPublic);
 		getServletContext().setAttribute("setName", setName);
 		
 		

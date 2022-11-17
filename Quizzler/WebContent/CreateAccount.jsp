@@ -23,6 +23,7 @@
 			<!-- Buttons -->
 			<input type="submit" value="Create Account" />
 			<input type="button" value="Cancel" onclick="window.location='Home.jsp'">
+			
 		</form>
 		</div>
 	</body>

@@ -10,11 +10,18 @@
 	<div>
 		<form method="post" action="sets">
 			<input name="setName" type="text" id="set_name"
-				placeholder="Set Name" /> <input name="setClass" type="text"
+				placeholder="Set Name" /> 
+				
+			<input name="setClass" type="text"
 				id="set_class" placeholder="Class(Optional)" />
+				
 			<textarea rows="5" cols="50" name="setDescription"
 				id="set_description"
-				placeholder="Description: (possible implementation)"></textarea>
+				placeholder="Description(Optional)"></textarea>
+			
+			<input type="checkbox" name="isPublic" value="true">
+			<p>Public</p>
+			
 			<input type="submit" value="Create" />
 		</form>
 	</div>

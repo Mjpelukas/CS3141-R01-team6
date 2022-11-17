@@ -1,5 +1,5 @@
-use mareuchl;
 /* Drop tables if they already exist in memory. */
+use 0MkLwGAyw5;
 drop table if exists Mastery;
 drop table if exists QuizQuestions;
 drop table if exists Quizzes;
@@ -80,7 +80,7 @@ create table Mastery
     correctGuesses int default 0,
     totalGuesses int default 0,
     primary key(quizOwner, quizName, question),
-    foreign key(quizName, quizOwner, question) references QuizQuestions(quizName, quizOwner, question)
+    foreign key(quizOwner, quizName, question) references QuizQuestions(quizOwner, quizName, question)
     on delete cascade
     on update cascade
 );
