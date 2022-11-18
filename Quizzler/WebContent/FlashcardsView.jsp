@@ -23,15 +23,14 @@
 	<div class="flash_container" >
 		<c:forEach items="${terms}" var="term">
 			<div class ="flashcard" id="flash_${term}" onclick='document.getElementById("flash_${term}").style.display = "none";
-			document.getElementById("flash_back_${term}").style.display = "inline-block"'>
+			document.getElementById("flash_back_${term}").style.display = "inline-flex"'>
 				<p > ${term[0]}</p >
 			</div >
 			<div class = "flash_back" id="flash_back_${term}" 
-			onclick='document.getElementById("flash_${term}").style.display = "inline-block"; document.getElementById("flash_back_${term}").style.display = "none"'>
+			onclick='document.getElementById("flash_${term}").style.display = "inline-flex"; document.getElementById("flash_back_${term}").style.display = "none"'>
 				<p > ${term[1]} </p >
 			</div >
-			</c:forEach>
-	
+		</c:forEach>
 	</div>
 
 </div>			
