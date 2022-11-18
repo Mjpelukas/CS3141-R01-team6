@@ -18,32 +18,23 @@
 				onclick="window.location='CreateFlashcard.jsp'">
 		</form>
 		<form>
-			<table>
-				<c:forEach items="${terms}" var="term">
-					<tr>
-						<td><c:out value="${term[0]}" /></td>
-						<td><c:out value="${term[1]}"/></td>
-					</tr>
-				</c:forEach>
-			</table>
-			
-			<div class="flash_container">
-			<%
-			for (int i = 0; i < 10; i++) {
-				out.println("<div class=\"flashcard\" id=\"flash" + i + "\" onclick='document.getElementById(\"flash" + i
-				+ "\").style.display = \"none\"; document.getElementById(\"" + "flash_b" + i
-				+ "\").style.display = \"inline-block\"'>");
-					out.println("<p> test front " + i + "</p>");
-				out.println("</div>");
-				out.println("<div class=\"flash_back\" id=\"flash_b" + i + "\" onclick='document.getElementById(\"flash"
-				+ i + "\").style.display = \"inline-block\"; document.getElementById(\"flash_b" + i
-				+ "\").style.display = \"none\"'>");
-					out.println("<p> test back " + i + "</p>");
-				out.println("</div>");
-		}
-		%>
+
+				
+	<div class="flash_container" >
+		<c:forEach items="${terms}" var="term">
+			<div class ="flashcard" id="flash_${term}" onclick='document.getElementById("flash_${term}").style.display = "none";
+			document.getElementById("flash_back_${term}").style.display = "inline-block"'>
+				<p > ${term[0]}</p >
+			</div >
+			<div class = "flash_back" id="flash_back_${term}" 
+			onclick='document.getElementById("flash_${term}").style.display = "inline-block"; document.getElementById("flash_back_${term}").style.display = "none"'>
+				<p > ${term[1]} </p >
+			</div >
+			</c:forEach>
+	
 	</div>
-			
+
+</div>			
 			
 			
 		</form>

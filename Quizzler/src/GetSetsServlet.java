@@ -74,7 +74,8 @@ public class GetSetsServlet extends HttpServlet {
 		
 		// TODO: Create error message for repeat set names, this is where it will be returned or thrown from
 		database.createFlashcardSet(username, setName, setDescription, isPublic);
-		getServletContext().setAttribute("setName", setName);
+		
+
 		
 		
 		/* 

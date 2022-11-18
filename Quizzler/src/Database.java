@@ -613,5 +613,40 @@ public class Database {
 	 		return false;
 	 	}
 	 }
+	public ArrayList<int[]> masteryQuery(String Username, String quizName) 
+    {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try 
+		{
+			// Create the SQL query to determine whether the searched quiz is public.
+			String query = "SELECT question, correctGuesses, totalGuesses FROM Mastery WHERE"
+				+ "quizOwner = ? and  quizName = ?";
+			
+			// Use prepared statements to prevent SQL injection.
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, Username);
+			preparedStatement.setString(2, quizName);
+			resultSet = preparedStatement.executeQuery();
+
+			ArrayList<int[]> masteryList = new ArrayList<int[]>();
+			
+			while (resultSet.next()) {
+				int question = resultSet.getInt(1), correctGuesses = resultSet.getInt(2), totalGuesses= resultSet.getInt(3);
+				int[] masteryQuestion = { question, correctGuesses, totalGuesses};
+				masteryList.add(masteryQuestion);
+			}
+			
+			return masteryList;
+		}catch (SQLException exception) 
+		{
+			System.out.println("SQLException: " + exception.getMessage());
+			System.out.println("SQLState: " + exception.getSQLState());
+			System.out.println("VendorError: " + exception.getErrorCode());
+			
+			return null;
+		}
+	}
 	 
 }

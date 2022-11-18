@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import = "java.io.*,java.util.*" %>
 
+<!--- TODO: FIX THIS GARBAGE
+ //PrintWriter memberPrint = request.getWriter();out.print(request.getAttribute("set_name")); 
+-->
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="Styling/styles.css" />
-		<title>Insert title here</title>
+		<title>Create A Flashcard</title>
 	</head>
-	<h1 class="title">Create Flashcard</h1>
-	<h3 id="member_set">${set_name}</h3>
+	<h1 class="title">Create a Flashcard</h1>
+	<!-- $set_name doesnt place -->
+	<h3 class="member_set">${set_name}</h3>
 	<body class="body">
 		<div>
 			<form method="post" action="flashcards">
@@ -22,9 +27,9 @@
 			</form>
 		</div>
 		<div>
-			<form method="get" action="flashcards">
+			<form method="get" action="sets">
 				<button style="background-color: #800003;"
-					name="getFlashcardName" type="submit" value="getFlashcard">Cancel</button>
+					name="createFlashcardCancel" type="submit" value="createCancel">Cancel</button>
 			</form>
 		</div>
 	</body>
