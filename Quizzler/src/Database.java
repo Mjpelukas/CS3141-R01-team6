@@ -114,6 +114,25 @@ public class Database {
 		}
 	}
 	
+	public boolean createQuiz(String username, String quizName, String isPublic) {
+		try {
+			String insert =
+					"INSERT INTO Quizzes values('" + quizName + "', '"
+					 + username + "', null, " + isPublic + ");";
+			
+			Statement statement = connection.prepareStatement(insert);
+			statement.execute(insert);
+			
+			return true;
+		} catch (SQLException exception) {
+			System.out.println("SQLException: " + exception.getMessage());
+			System.out.println("SQLState: " + exception.getSQLState());
+			System.out.println("VendorError: " + exception.getErrorCode());
+			
+			return false;
+		}
+	}
+	
 	// Let a user view a flashcard set corresponding to a provided set name.
 	public ArrayList<String[]> viewFlashcardSet(String setName, String username) {
 		PreparedStatement preparedStatement = null;
@@ -190,7 +209,7 @@ public class Database {
 		try {
 			// Determine the MySQL statement to obtain the rows matching the provided set
 			// name and username.
-			String query = "SELECT setName from Quizzes where setOwner = ?";
+			String query = "SELECT quizName from Quizzes where quizOwner = ?";
 			
 			// Use prepared statements to prevent SQL injection.
 			preparedStatement = connection.prepareStatement(query);

@@ -10,12 +10,12 @@
 	<h1 class="title">Create Quiz</h1>
 	<body class="body">
 	<div>
-		<form action="">
+		<form method="post" action="quizzes">
 		<%
 		//PrintWriter out = new PrintWriter();
 		%>
 		
-		<input name='quizNameText' type='text' id='quizNameText' placeholder="Quiz Name">
+		<input name='quizName' type='text' id='quizName' placeholder="Quiz Name">
 		
 		<input name='courseText' type='text' id='courseText' placeholder="Class(Optional)">
 		 

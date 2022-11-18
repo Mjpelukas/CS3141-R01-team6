@@ -16,6 +16,22 @@ public class QuizzesServlet extends HttpServlet {
 		// Get the session username
 		String username = (String) getServletContext().getAttribute("username");
 		
+		if(request.getParameter("delete") != null) {
+			String setName = (String) request.getParameter("delete");
+			
+			
+			Database database = new Database();
+			database.connect();
+
+			database.deleteQuiz(setName, username);
+			try {
+			request.getRequestDispatcher("QuizzesView.jsp").forward(request, response);
+			} catch(Exception e){}
+			return;
+			
+		}
+		
+		
 		// Use that database to get the list of set names 
 		Database database = new Database();
 		database.connect();
@@ -58,8 +74,8 @@ public class QuizzesServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// Gets the info from the submit form
 		// TODO: Create isPublic paramater so we can implement the search feature
-		String setName = request.getParameter("setName");
-		String setDescription = request.getParameter("setDescription");
+		String quizName = request.getParameter("quizName");
+		//String setDescription = request.getParameter("quizDescription");
 		String isPublic = request.getParameter("isPublic") == null ? "false" : "true";
 		
 		// This was for testing
@@ -73,8 +89,8 @@ public class QuizzesServlet extends HttpServlet {
 		database.connect();
 		
 		// TODO: Create error message for repeat set names, this is where it will be returned or thrown from
-		database.createFlashcardSet(username, setName, setDescription, isPublic);
-		getServletContext().setAttribute("setName", setName);
+		database.createQuiz(username, quizName, isPublic);
+		getServletContext().setAttribute("quizName", quizName);
 		
 		
 		/* 
@@ -88,8 +104,8 @@ public class QuizzesServlet extends HttpServlet {
 				+ "	<body class=\"body\">\r\n"
 				+ "    	<div>"
 				+ "<h1>Success!</h1>"
-				+ "<form method=\"get\" action=\"sets\" class=\"buttonList\">\r\n"
-		+ "        	<button name=\"getFlashcardSetsName\" type=\"submit\" value=\"getFlashcardSets\">Back</button>\r\n"
+				+ "<form method=\"get\" action=\"quizzes\" class=\"buttonList\">\r\n"
+		+ "        	<button name=\"getQuizzes\" type=\"submit\" value=\"getQuizzes\">Back</button>\r\n"
 		+ "        </form>";
 		
 		out.println(html);
