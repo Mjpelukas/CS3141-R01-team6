@@ -15,6 +15,8 @@ public class Database {
 		// TODO: Obtain the username and password from the POST method when the user
 		// inputs login info.
 		// database.authenticateLogin("[USERNAME]", "[PASSWORD]");
+		System.out.println(database.setInfo("maxim", "test1").get(0));
+		
 		
 		database.disconnect();
 	}
@@ -132,6 +134,50 @@ public class Database {
 			return false;
 		}
 	}
+	
+	
+	public ArrayList<String> setInfo(String setName, String username){
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			// Determine the MySQL statement to obtain the rows matching the provided set
+			// name and username.
+			String query = "SELECT setName, description, isPublic from FlashcardSets where setName = ? and setOwner = ?";
+			
+			// Use prepared statements to prevent SQL injection.
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, setName);
+			preparedStatement.setString(2, username);
+			resultSet = preparedStatement.executeQuery();
+			
+			// Iterate through each flashcard's term and definition to be entered in the
+			// HTML table.
+			ArrayList<String> items = new ArrayList<String>();
+			
+			/**while (resultSet.next()) {
+				String item = resultSet.getString(1);
+				items.add(item);
+			}**/
+			
+			items.add(setName);
+			String description = resultSet.getString(2);
+			items.add(description);
+			String isPublic = resultSet.getString(3);
+			items.add(isPublic);
+			
+			return items;
+		} catch (SQLException exception) {
+			System.out.println("SQLException: " + exception.getMessage());
+			System.out.println("SQLState: " + exception.getSQLState());
+			System.out.println("VendorError: " + exception.getErrorCode());
+			
+			return null;
+		}
+	}
+	
+	
+	
 	
 	// Let a user view a flashcard set corresponding to a provided set name.
 	public ArrayList<String[]> viewFlashcardSet(String setName, String username) {
@@ -259,42 +305,6 @@ public class Database {
 		}
 	}
 	
-	// Let a user view a flashcard set corresponding to a provided set name.
-	//NOTE: there's no username for the set, so username isn't a parameter
-	public ArrayList<String[]> viewFlashcards(String setName) {
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		
-		try {
-			// Determine the MySQL statement to obtain the rows matching the provided set
-			// name and username.
-			String query = "SELECT term, term_definition from Flashcards where setName = ?";
-			
-			// Use prepared statements to prevent SQL injection.
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, setName);
-			resultSet = preparedStatement.executeQuery();
-			
-			// Iterate through each flashcard's term and definition to be entered in the
-			// HTML table.
-			ArrayList<String[]> flashcards = new ArrayList<String[]>();
-			
-			while (resultSet.next()) {
-				String term = resultSet.getString(1), definition = resultSet.getString(2);
-				String[] flashcard = {term, definition};
-				flashcards.add(flashcard);
-			}
-			
-			return flashcards;
-		} catch (SQLException exception) {
-			System.out.println("SQLException: " + exception.getMessage());
-			System.out.println("SQLState: " + exception.getSQLState());
-			System.out.println("VendorError: " + exception.getErrorCode());
-			
-			return null;
-		}
-	}
-
 	
 	// Delete a flashcard set provided a flashcard set name.
 	public boolean deleteFlashcardSet(String setName, String username) {

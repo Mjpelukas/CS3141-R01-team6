@@ -24,9 +24,11 @@
  				     The value which is shown to the user is set to item, which is the set name taken from the arraylist -->
 				<form method="get" action="flashcards">
 				<input type="submit" value="<c:out value = "${item}"/>" name="set_name">
-				
 				<button 
-					style="background-color: #770000; width: 40px; height: 40px; padding: 0;" 
+					style="background-color: #770000; width: auto; height: 30px; padding: 4px;" 
+					type="submit" value="<c:out value = "${item}"/>" name="edit">edit</button>
+				<button 
+					style="background-color: #770000; width: 30px; height: 30px; padding: 0;" 
 					type="submit" value="<c:out value = "${item}"/>" name="delete">x</button><br>
 				</form>
 			</c:forEach>

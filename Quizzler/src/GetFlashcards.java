@@ -20,9 +20,25 @@ public class GetFlashcards extends HttpServlet {
 		// Get's username from session context
 		String username = (String) getServletContext().getAttribute("username");
 		
+		if(request.getParameter("edit") != null) {
+			String setName = (String) request.getParameter("edit");
+			Database database = new Database();
+			database.connect();
+
+			ArrayList<String> setInfo = database.setInfo(setName, username);
+			
+			request.setAttribute("setName", setInfo.get(0));
+			request.setAttribute("description", setInfo.get(1));
+			//request.setAttribute("isPublic", setInfo.get(2));
+			try {
+			request.getRequestDispatcher("EditSet.jsp").forward(request, response);
+			} catch(Exception e){}
+			return;
+			
+		}
+		
 		if(request.getParameter("delete") != null) {
 			String setName = (String) request.getParameter("delete");
-			
 			
 			Database database = new Database();
 			database.connect();

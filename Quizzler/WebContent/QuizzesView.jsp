@@ -26,7 +26,7 @@
 				<input type="submit" value="<c:out value = "${item}"/>" name="quiz_name">
 				
 				<button 
-					style="background-color: #770000; width: 40px; height: 40px; padding: 0;" 
+					style="background-color: #770000; width: 30px; height: 30px; padding: 0;" 
 					type="submit" value="<c:out value = "${item}"/>" name="delete">x</button><br>
 				</form>
 				</form>
