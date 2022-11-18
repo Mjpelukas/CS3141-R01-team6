@@ -25,8 +25,8 @@
 	
     	<div>
         	<form method="post" action="login">
-            	<input name="login_username" type="text" id="username" placeholder="Username"/>
-            	<input name="login_password" type="password" id="password" placeholder="Password"/>
+            	<input name="login_username" type="text" id="username" placeholder="Username"/><br>
+            	<input name="login_password" type="password" id="password" placeholder="Password"/><br>
             	
 		<!-- This error message only displays things when there's an error outputted by login.java -->
             	<p>${error}</p>	

@@ -183,6 +183,38 @@ public class Database {
 		}
 	}
 	
+	public ArrayList<String> viewQuizzes(String username) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			// Determine the MySQL statement to obtain the rows matching the provided set
+			// name and username.
+			String query = "SELECT setName from Quizzes where setOwner = ?";
+			
+			// Use prepared statements to prevent SQL injection.
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, username);
+			resultSet = preparedStatement.executeQuery();
+			
+			// Iterate through each flashcard set's name and add it to the arraylist
+			ArrayList<String> quizNames = new ArrayList<String>();
+			
+			while (resultSet.next()) {
+				String quizName = resultSet.getString(1);
+				quizNames.add(quizName);
+			}
+			
+			return quizNames;
+		} catch (SQLException exception) {
+			System.out.println("SQLException: " + exception.getMessage());
+			System.out.println("SQLState: " + exception.getSQLState());
+			System.out.println("VendorError: " + exception.getErrorCode());
+			
+			return null;
+		}
+	}
+	
 	public boolean createFlashcard
 	(String term, String term_definition, String setName, String setOwner) {
 		try {

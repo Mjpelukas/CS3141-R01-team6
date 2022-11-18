@@ -226,3 +226,10 @@ form > p{
 	font-size: 24px;
 	margin: 0;
 }
+
+form > label{
+	color: #333333;
+	font-family: Arial, sans-serif;
+	font-size: 24px;
+	margin: 0;
+}

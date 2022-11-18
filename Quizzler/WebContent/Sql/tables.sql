@@ -1,5 +1,5 @@
-/* Drop tables if they already exist in memory. */
 use 0MkLwGAyw5;
+/* Drop tables if they already exist in memory. */
 drop table if exists Mastery;
 drop table if exists QuizQuestions;
 drop table if exists Quizzes;
@@ -19,6 +19,7 @@ create table FlashcardSets
 (
     setName varchar(30),
     setOwner varchar(30),
+    description text,
     course varchar(10),
     isPublic tinyint default 0,
     mastery int default 0,
@@ -80,10 +81,11 @@ create table Mastery
     correctGuesses int default 0,
     totalGuesses int default 0,
     primary key(quizOwner, quizName, question),
-    foreign key(quizOwner, quizName, question) references QuizQuestions(quizOwner, quizName, question)
+    foreign key(quizName, quizOwner, question) references QuizQuestions(quizName, quizOwner, question)
     on delete cascade
     on update cascade
 );
 
+insert into Users values('username', null, sha2('password', 256));
 /* Create Index SQL Statements 
 CREATE INDEX usernameIndex ON TABLE Mastery(username);*/

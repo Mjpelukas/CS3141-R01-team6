@@ -55,4 +55,13 @@
     <servlet-name>deleteSets</servlet-name>
     <url-pattern>/deleteSet</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>quizzes</servlet-name>
+    <servlet-class>QuizzesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>quizzes</servlet-name>
+    <url-pattern>/quizzes</url-pattern>
+  </servlet-mapping>
 </web-app>
