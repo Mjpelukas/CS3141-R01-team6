@@ -4,25 +4,27 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<link rel="stylesheet" type="text/css" href="styles.css" />
+		<link rel="stylesheet" type="text/css" href="Styling/styles.css" />
 		<title>Insert title here</title>
 	</head>
+	<h1 class="title">Quizzler</h1>
+	<h2 class="subheader">Login Page</h2>
 	<body class="body">
 	<div>
 		<form method="post" action="accountCreated">
-			<!-- <label for="create_username">Create Username:</label> -->
+			<!-- Text Inputs -->
 			<input name="create_username" type="text" placeholder="Username">
-			<!-- <label for="create_password">Create Password:</label> -->
 			<input name="create_password" type="password" placeholder="Password"/>
-			
 			<input name="confirm_password" type="password" placeholder="Confirm Password"/>
-			<p>${error}</p>			
+			
+			<!-- this retrieves any error message that the create account servlet sets as an attribute -->
+			<p>${error}</p>		
+			
+			<!-- Buttons -->
 			<input type="submit" value="Create Account" />
-			<input type="button" value="Cancel" onclick="window.location='base.html'">
+			<input type="button" value="Cancel" onclick="window.location='Home.jsp'">
+			
 		</form>
-		<!-- <form>
-    		<input type="button" value="Cancel" onclick="window.location='base.html'">
-		</form>-->
 		</div>
 	</body>
 </html>

@@ -19,7 +19,7 @@
     <servlet-name>loginForm</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
-
+  
   <servlet>
     <servlet-name>accountCreatedForm</servlet-name>
     <servlet-class>AccountCreationServlet</servlet-class>
@@ -45,5 +45,23 @@
   <servlet-mapping>
     <servlet-name>flashcardSet</servlet-name>
     <url-pattern>/flashcards</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>deleteSets</servlet-name>
+    <servlet-class>DeleteSetsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteSets</servlet-name>
+    <url-pattern>/deleteSet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>quizzes</servlet-name>
+    <servlet-class>QuizzesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>quizzes</servlet-name>
+    <url-pattern>/quizzes</url-pattern>
   </servlet-mapping>
 </web-app>
