@@ -3,6 +3,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="context-root" value="Quizzler"/>
-        <property name="java-output-path" value="/Quizzler/build/classes"/>
+        <property name="java-output-path" value="/Quizzler/bin"/>
     </wb-module>
 </project-modules>
