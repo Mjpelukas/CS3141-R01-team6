@@ -419,21 +419,39 @@ public class Database {
 			return false;
 		}
 	}
-
+/* !UNUSED! Too complicated because why would you search by username
+ * maybe one day my sweet 
 	// Search another user's list of public flashcard sets by their username.
-	public ArrayList<String> searchUserFlashcards(String username)
+	public ArrayList<String> searchUserFlashcards(String setname, String username)
 	{
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-
+		int setStringInt = 1;
+		boolean doingSets = false;
+		boolean doingUsername = false;
 		try
 		{
 			// Create the SQL query to obtain another user's list of flashcard sets if it is public.
-			String query = "SELECT setName FROM FlashcardSets WHERE setOwner = ? AND isPublic = 1";
-			
+			String query = "SELECT setName FROM FlashcardSets WHERE isPublic = 1";
+			if(setname != null){
+				 query += "and setName = ?";
+				 doingSets = true;
+			}
+			if(username != null){
+				 query += "and setOwner = ?";
+				 doingUsername = true;
+				 
+			}
 			// Use prepared statements to prevent SQL injection.
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, username);
+			if(doingSets) {
+				preparedStatement.setString(setStringInt, setname);
+				setStringInt++;
+			}
+			if(doingUsername) {
+				preparedStatement.setString(setStringInt, username);
+			}
+			
 			resultSet = preparedStatement.executeQuery();
 			
 			// Iterate through each set name to be shown on the website.
@@ -452,7 +470,7 @@ public class Database {
 			return null;
 		}
 	}
-
+*/
 	// Search another user's list of public quizzes by their username.
 	public ArrayList<String> searchUserQuizzes(String username)
 	{
