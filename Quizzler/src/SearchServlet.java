@@ -21,11 +21,9 @@ public class SearchServlet extends HttpServlet
 			database.connect();
 
 			// Search the flashcard set provided the flashcard set name.
-			ArrayList<String> resultSet = database.searchFlashcardSet(setName);
+			ArrayList<String[]> resultSet = database.searchFlashcardSet(setName);
 			
-			// Log the flashcard set name and username associated with the searched flashcard set.
-			request.setAttribute("setName", resultSet.get(0));
-			request.setAttribute("username", resultSet.get(1));
+			request.setAttribute("terms", resultSet);
 
 			// Attempt forwarding the request to SetSearchResults.jsp.
 			try{
@@ -42,11 +40,9 @@ public class SearchServlet extends HttpServlet
 			database.connect();
 
 			// Search the quiz provided the quiz name.
-			ArrayList<String> resultSet = database.searchQuiz(quizName);
+			ArrayList<String[]> resultSet = database.searchQuiz(quizName);
 			
-			// Log the quiz name and username associated with the searched quiz.
-			request.setAttribute("quizName", resultSet.get(0));
-			request.setAttribute("username", resultSet.get(1));
+			request.setAttribute("questions", resultSet);
 
 			// Attempt forwarding the request to QuizSearchResults.jsp.
 			try{

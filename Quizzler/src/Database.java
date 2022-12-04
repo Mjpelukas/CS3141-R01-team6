@@ -505,7 +505,7 @@ public class Database {
 	}
 
     // Search another user's public flashcard set by set name.
-	public boolean searchFlashcardSet(String setName) 
+	public ArrayList<String[]> searchFlashcardSet(String setName) 
     {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -520,11 +520,15 @@ public class Database {
 			preparedStatement.setString(1, setName);
 			resultSet = preparedStatement.executeQuery();
 
-			// View the flashcard set if it exists.
-			if(resultSet != null)
-				viewFlashcardSet(resultSet.getString(1), resultSet.getString(2));
-
-			return true;
+			// Return a list of the flashcard set names that match the search query.
+			ArrayList<String[]> flashcardSetsList = new ArrayList<String[]>();
+			while(resultSet.next()) 
+			{
+				String[] flashcardSet = {resultSet.getString(1), resultSet.getString(2)};
+				flashcardSetsList.add(flashcardSet);
+			}
+			
+			return flashcardSetsList;
 		} 
 		catch (SQLException exception) 
 		{
@@ -532,12 +536,12 @@ public class Database {
 			System.out.println("SQLState: " + exception.getSQLState());
 			System.out.println("VendorError: " + exception.getErrorCode());
 			
-			return false;
+			return null;
 		}
 	}
 
 	// Search for another user's public quiz by quiz name.
-	public boolean searchQuiz(String quizName) 
+	public ArrayList<String[]> searchQuiz(String quizName) 
     {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -552,11 +556,15 @@ public class Database {
 			preparedStatement.setString(1, quizName);
 			resultSet = preparedStatement.executeQuery();
 
-			// Take the quiz if it exists.
-			if(resultSet != null)
-				takeQuiz(resultSet.getString(1), resultSet.getString(2));
-
-			return true;
+			// Return a list of the quiz names that match the search query.
+			ArrayList<String[]> quizzesList = new ArrayList<String[]>();
+			while(resultSet.next()) 
+			{
+				String[] quiz = {resultSet.getString(1), resultSet.getString(2)};
+				quizzesList.add(quiz);
+			}
+			
+			return quizzesList;
 		} 
 		catch (SQLException exception) 
 		{
@@ -564,7 +572,7 @@ public class Database {
 			System.out.println("SQLState: " + exception.getSQLState());
 			System.out.println("VendorError: " + exception.getErrorCode());
 			
-			return false;
+			return null;
 		}
 	}
 	

@@ -10,12 +10,13 @@
 </head>
 <body>
 	<c:forEach items="${setNames}" var="item">
-				
-				<!-- the name for each button is set_name so that when it's submitted, the servlet
-				     can access the parameter by the identity "set_name" 
- 				     The value which is shown to the user is set to item, which is the set name taken from the arraylist -->
-				<form method="get" action="flashcards">
-				<input type="submit" value="<c:out value = "${item}"/>" name="set_name">
-				
+		<!-- the name for each button is set_name so that when it's submitted, the servlet
+			 can access the parameter by the identity "set_name" 
+ 			The value which is shown to the user is set to item, which is the set name 
+ 			taken from the arraylist -->
+		<form method="get" action="searchedFlashcardView">
+			<input type="submit" value="<c:out value = "${item}"/>" name="set_name">
+		</form>	
+	</c:forEach>	
 </body>
 </html>
