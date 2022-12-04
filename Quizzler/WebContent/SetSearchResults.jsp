@@ -18,7 +18,7 @@
  			The value which is shown to the user is set to item, which is the set name 
  			taken from the arraylist -->
 		<form method="get" action="searchedFlashcardView">
-			<input type="submit" value="<c:out value = "${item}"/>" name="set_name">
+			<input type="submit" value="<c:out value = "${item[0]}"/>" name="set_name">
 		</form>	
 	</c:forEach>	
 </body>
