@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="Styling/styles.css" />
 <title>Quiz Search Results</title>
 </head>
+<h1 class="title">Quizzler</h1>
+<h2 class="subheader">Quiz Search Results</h2>
 <body>
 	<c:forEach items="${quizNames}" var="item">
 		<!-- the name for each button is quiz_name so that when it's submitted, the servlet

@@ -480,7 +480,7 @@ public class Database {
 		try
 		{
 			// Create the SQL query to obtain another user's list of quizzes.
-			String query = "SELECT quizName FROM Quizzes WHERE setOwner = ? AND isPublic = 1";
+			String query = "SELECT quizName FROM Quizzes WHERE quizOwner = ? AND isPublic = 1";
 			
 			// Use prepared statements to prevent SQL injection.
 			preparedStatement = connection.prepareStatement(query);
@@ -513,7 +513,7 @@ public class Database {
 		try 
 		{
 			// Create the SQL query to obtain the searched flashcard set.
-			String query = "SELECT setName, username FROM FlashcardSets WHERE setName = ? AND isPublic = 1";
+			String query = "SELECT setName, setOwner FROM FlashcardSets WHERE setName = ? AND isPublic = 1";
 			
 			// Use prepared statements to prevent SQL injection.
 			preparedStatement = connection.prepareStatement(query);
@@ -549,7 +549,7 @@ public class Database {
 		try 
 		{
 			// Create the SQL query to determine whether the searched quiz is public.
-			String query = "SELECT quizName, username FROM Quizzes WHERE quizName = ? AND isPublic = 1";
+			String query = "SELECT quizName, quizOwner FROM Quizzes WHERE quizName = ? AND isPublic = 1";
 			
 			// Use prepared statements to prevent SQL injection.
 			preparedStatement = connection.prepareStatement(query);

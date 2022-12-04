@@ -55,7 +55,8 @@ create table Quizzes
 
 -- IDENTITY is the equivalent of AUTO_INCREMENT
 create table QuizQuestions
-(
+(	
+	quizID int not null,
 	quizOwner varchar(30),
     quizName varchar(30),
     question int,

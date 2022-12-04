@@ -8,6 +8,9 @@
 <link rel="stylesheet" type="text/css" href="Styling/styles.css" />
 <title>Set Search Results</title>
 </head>
+
+<h1 class="title">Quizzler</h1>
+<h2 class="subheader">Set Search Results</h2>
 <body>
 	<c:forEach items="${setNames}" var="item">
 		<!-- the name for each button is set_name so that when it's submitted, the servlet

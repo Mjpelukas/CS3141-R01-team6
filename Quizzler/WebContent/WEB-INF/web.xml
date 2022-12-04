@@ -71,6 +71,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>search</servlet-name>
-    <url-pattern>/search</url-pattern>
+    <url-pattern>/searchResults</url-pattern>
   </servlet-mapping>
 </web-app>
