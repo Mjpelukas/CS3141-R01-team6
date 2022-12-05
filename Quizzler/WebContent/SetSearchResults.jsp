@@ -19,6 +19,7 @@
  			taken from the arraylist -->
 		<form method="get" action="searchedFlashcardView">
 			<input type="submit" value="<c:out value = "${item[0]}"/>" name="set_name">
+			<input type="hidden" value="<c:out value = "${item[1]}"/>" name="set_owner">
 		</form>	
 	</c:forEach>	
 </body>

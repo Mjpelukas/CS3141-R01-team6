@@ -160,6 +160,7 @@ public class Database {
 				items.add(item);
 			}**/
 			
+			resultSet.next();
 			items.add(setName);
 			String description = resultSet.getString(2);
 			items.add(description);
