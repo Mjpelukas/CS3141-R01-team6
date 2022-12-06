@@ -23,7 +23,7 @@ public class SearchServlet extends HttpServlet
 			// Search the flashcard set provided the flashcard set name.
 			ArrayList<String[]> resultSet = database.searchFlashcardSet(setName);
 			
-			request.setAttribute("terms", resultSet);
+			request.setAttribute("setNames", resultSet);
 
 			// Attempt forwarding the request to SetSearchResults.jsp.
 			try{
@@ -42,7 +42,7 @@ public class SearchServlet extends HttpServlet
 			// Search the quiz provided the quiz name.
 			ArrayList<String[]> resultSet = database.searchQuiz(quizName);
 			
-			request.setAttribute("questions", resultSet);
+			request.setAttribute("quizNames", resultSet);
 
 			// Attempt forwarding the request to QuizSearchResults.jsp.
 			try{
