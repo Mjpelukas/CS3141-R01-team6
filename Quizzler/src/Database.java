@@ -159,6 +159,7 @@ public class Database {
 				String item = resultSet.getString(1);
 				items.add(item);
 			}**/
+
 			resultSet.next();
 			items.add(setName);
 			String description = resultSet.getString(2);

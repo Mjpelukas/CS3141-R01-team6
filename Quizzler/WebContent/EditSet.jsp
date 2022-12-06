@@ -6,9 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="Styling/styles.css" />
-<title>Insert title here</title>
+<title>Edit Set</title>
 </head>
-<h1 class="title">Create Set</h1>
+<h1 class="title">Edit Set</h1>
 <body class="body">
 	<div>
 		<form method="post" action="sets">
@@ -22,10 +22,11 @@
 				id="set_description" value="<c:out value = "${description}"/>" 
 				placeholder="Description(Optional)"></textarea>
 			
-			<input type="checkbox" name="isPublic" value="true">
-			<p>Public</p>
+			<label>
+      			Public <input type="checkbox" name="isPublic" value="true"/>
+    		</label>
 			
-			<input type="submit" value="Create" />
+			<input type="submit" value="Submit Changes" />
 		</form>
 	</div>
 	<div>

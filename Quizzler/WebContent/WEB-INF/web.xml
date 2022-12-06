@@ -73,4 +73,21 @@
     <servlet-name>search</servlet-name>
     <url-pattern>/searchResults</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>searchResultsFlashcards</servlet-name>
+    <servlet-class>SearchResultsFlashcard</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchResultsFlashcards</servlet-name>
+    <url-pattern>/searchedFlashcardView</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>searchResultsQuizzes</servlet-name>
+    <servlet-class>SearchResultsQuiz</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>searchResultsQuizzes</servlet-name>
+    <url-pattern>/searchedQuizView</url-pattern>
+  </servlet-mapping>
 </web-app>
