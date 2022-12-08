@@ -32,5 +32,6 @@ public class SearchResultsFlashcard extends HttpServlet
 			// (I'm only pretty sure that's how that works)
 			request.getRequestDispatcher("searchedFlashcardView.jsp").forward(request, response);
 		} catch (Exception e) {}
+		//
 	}
 }
