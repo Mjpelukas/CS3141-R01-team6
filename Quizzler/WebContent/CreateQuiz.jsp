@@ -14,7 +14,7 @@
 		<%
 		//PrintWriter out = new PrintWriter();
 		%>
-		
+		<input type="hidden" name="creationType" value="blanketQuiz">
 		<input name='quizName' type='text' id='quizName' placeholder="Quiz Name">
 		
 		<input name='courseText' type='text' id='courseText' placeholder="Class(Optional)">

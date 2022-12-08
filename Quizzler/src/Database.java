@@ -159,7 +159,7 @@ public class Database {
 				String item = resultSet.getString(1);
 				items.add(item);
 			}**/
-			
+
 			resultSet.next();
 			items.add(setName);
 			String description = resultSet.getString(2);
@@ -471,8 +471,8 @@ public class Database {
 			return null;
 		}
 	}
-*/
-	// Search another user's list of public quizzes by their username.
+*/ //@UNUSED! Too complicated because why would you search by username
+/*	// Search another user's list of public quizzes by their username.
 	public ArrayList<String> searchUserQuizzes(String username)
 	{
 		PreparedStatement preparedStatement = null;
@@ -504,7 +504,7 @@ public class Database {
 			return null;
 		}
 	}
-
+*/
     // Search another user's public flashcard set by set name.
 	public ArrayList<String[]> searchFlashcardSet(String setName) 
     {
@@ -581,7 +581,7 @@ public class Database {
 	public void takeQuiz(String one, String two){}
 	
 	
-	// Search for another user's flashcard set by its description.
+/*	// Search for another user's flashcard set by its description.
 	// Fuzzy Search: SELECT * FROM `TABLE` WHERE MATCH(`COLUMN`) AGAINST("SEARCH" IN NATURAL LANGUAGE MODE);
 	public boolean searchFlashcardSetDescription(String description)
 	{
@@ -640,6 +640,7 @@ public class Database {
 	 		return false;
 	 	}
 	 }
+	*/ 
 	public ArrayList<int[]> masteryQuery(String Username, String quizName) 
     {
 		PreparedStatement preparedStatement = null;
@@ -675,5 +676,5 @@ public class Database {
 			return null;
 		}
 	}
-	 
+
 }

@@ -73,16 +73,20 @@ public class QuizzesServlet extends HttpServlet {
 	// This creates a new set for a specific user
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// Gets the info from the submit form
-		// TODO: Create isPublic paramater so we can implement the search feature
+		//all three are always present
+		String creationType = request.getParameter("creationType");
 		String quizName = request.getParameter("quizName");
+		// Gets the session username
+		String username = (String) getServletContext().getAttribute("username");
+		
+		
 		//String setDescription = request.getParameter("quizDescription");
 		String isPublic = request.getParameter("isPublic") == null ? "false" : "true";
 		
 		// This was for testing
 		// System.out.println(setName);
 		
-		// Gets the session username
-		String username = (String) getServletContext().getAttribute("username");
+		
 		
 		// Creates the flashcard
 		Database database = new Database();

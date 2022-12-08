@@ -67,7 +67,7 @@ create table QuizQuestions
     choiceB varchar(256),
     choiceC varchar(256),
     choiceD varchar(256),
-    primary key(quizOwner, quizName, question),
+    primary key(quizID),
     foreign key(quizName, quizOwner) references Quizzes(quizName, quizOwner)
     on delete cascade
     on update cascade
