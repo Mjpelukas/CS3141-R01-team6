@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -109,6 +110,30 @@ public class Login {
 		
 		return false;
 	}*/
+=======
+
+public class Login {
+	
+	private String username, password;
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	String usernameEntered, passwordEntered;
+>>>>>>> refs/remotes/origin/mrpenoyar
 	
 	// Creates account using database.java
 	public boolean addAccount(String susername, String spassword) {

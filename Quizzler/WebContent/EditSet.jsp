@@ -12,19 +12,27 @@
 <body class="body">
 	<div>
 		<form method="post" action="sets">
+			<label>Change Set Name(Optional)</label>
 			<input name="setName" type="text" id="set_name"
-				value="<c:out value = "${setName}"/>" placeholder="Set Name" /> 
-				
-			<input name="setClass" type="text"
-				id="set_class" placeholder="Class(Optional)" />
-				
+			 placeholder= "${setName}" /> 
+
+			<label for="setDescription">Description (Optional)</label>	
 			<textarea rows="5" cols="50" name="setDescription"
-				id="set_description" value="<c:out value = "${description}"/>" 
-				placeholder="Description(Optional)"></textarea>
+				id="set_description" >
+				<c:out value = "${description}"/>
+			</textarea>
 			
+<<<<<<< HEAD
 			<label>Public <input type="checkbox" name="isPublic" value="true"/></label>
 			
 			<input type="submit" value="Submit Changes" />
+=======
+			<label>
+      			Public <input type="checkbox" name="isPublic" value="true"/>
+    		</label>
+			<br>
+			<input type="submit" name="edit" value="Submit Changes" />
+>>>>>>> branch 'main' of https://github.com/Mjpelukas/CS3141-R01-team6.git
 		</form>
 	</div>
 	<div>

@@ -8,29 +8,27 @@ import javax.servlet.http.HttpServletResponse;
 
 public class QuizzesServlet extends HttpServlet {
 	
-	
 	// Returns a list of all the set names for a given user
 	// Doesn't actually return that information but sets the context attribute "setnames"
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		
 		// Get the session username
 		String username = (String) getServletContext().getAttribute("username");
 		
 		if(request.getParameter("delete") != null) {
 			String setName = (String) request.getParameter("delete");
 			
-			
 			Database database = new Database();
 			database.connect();
 
 			database.deleteQuiz(setName, username);
-			try {
-			request.getRequestDispatcher("QuizzesView.jsp").forward(request, response);
-			} catch(Exception e){}
-			return;
 			
+			try {
+				request.getRequestDispatcher("QuizzesView.jsp").forward(request, response);
+			} catch(Exception e){
+			}
+			
+			return;
 		}
-		
 		
 		// Use that database to get the list of set names 
 		Database database = new Database();
@@ -69,7 +67,6 @@ public class QuizzesServlet extends HttpServlet {
 		         "</html>");**/
 	}
 	
-	
 	// This creates a new set for a specific user
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// Gets the info from the submit form
@@ -79,18 +76,20 @@ public class QuizzesServlet extends HttpServlet {
 		// Gets the session username
 		String username = (String) getServletContext().getAttribute("username");
 		
-		
 		//String setDescription = request.getParameter("quizDescription");
 		String isPublic = request.getParameter("isPublic") == null ? "false" : "true";
 		
+<<<<<<< HEAD
 		// Creates the quiz
+=======
+		// Creates the flashcard
+>>>>>>> branch 'main' of https://github.com/Mjpelukas/CS3141-R01-team6.git
 		Database database = new Database();
 		database.connect();
 		
 		// TODO: Create error message for repeat set names, this is where it will be returned or thrown from
 		database.createQuiz(username, quizName, isPublic);
 		getServletContext().setAttribute("quizName", quizName);
-		
 		
 		/* 
 		 * This might not be necessary. This basically outputs a success page with a back button.
@@ -108,8 +107,6 @@ public class QuizzesServlet extends HttpServlet {
 		+ "        </form>";
 		
 		out.println(html);
-	
-		
 	}
 
 }

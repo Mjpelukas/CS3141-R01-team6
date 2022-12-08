@@ -20,10 +20,10 @@
 			</tr>
 				<c:forEach items="${masteryQuestion}" var="mPart">
 					<tr>
-						<td><c:out value="${mPart[0]}" /></td>
-						<td>Percentage Calculation coming soon</td>
+						<td><c:out value="${mPart[0]}"/></td>
 						<td><c:out value="${mPart[1]}"/></td>
 						<td><c:out value="${mPart[2]}"/></td>
+						<td><c:out value="${mPart[3]}"/></td>
 					</tr>
 				</c:forEach>
 					<tr>

@@ -66,6 +66,33 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>takeQuiz</servlet-name>
+    <servlet-class>TakeQuizServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>takeQuiz</servlet-name>
+    <url-pattern>/TakeQuiz</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>quizResults</servlet-name>
+    <servlet-class>QuizResultsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>quizResults</servlet-name>
+    <url-pattern>/GetQuizResults</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>quizQuestions</servlet-name>
+    <servlet-class>GetQuizServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>quizQuestions</servlet-name>
+    <url-pattern>/QuizQuestions</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>search</servlet-name>
     <servlet-class>SearchServlet</servlet-class>
   </servlet>
