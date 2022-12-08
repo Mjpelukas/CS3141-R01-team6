@@ -22,9 +22,7 @@
 				id="set_description" value="<c:out value = "${description}"/>" 
 				placeholder="Description(Optional)"></textarea>
 			
-			<label>
-      			Public <input type="checkbox" name="isPublic" value="true"/>
-    		</label>
+			<label>Public <input type="checkbox" name="isPublic" value="true"/></label>
 			
 			<input type="submit" value="Submit Changes" />
 		</form>

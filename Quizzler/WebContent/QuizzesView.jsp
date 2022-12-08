@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="Styling/styles.css" />
-<title>Insert title here</title>
+<title>Quizzes</title>
 </head>
 <h1 class="title">Quizzler</h1>
 <h2 class="subheader">Quizzes</h2>

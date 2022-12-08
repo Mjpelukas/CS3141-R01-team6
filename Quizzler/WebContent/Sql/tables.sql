@@ -20,7 +20,6 @@ create table FlashcardSets
     setName varchar(30),
     setOwner varchar(30),
     description text,
-    course varchar(10),
     isPublic tinyint default 0,
     mastery int default 0,
     primary key(setName, setOwner),
@@ -43,10 +42,9 @@ create table Flashcards
 
 create table Quizzes
 (
-	quizID int IDENTITY(1,1)not null,
-    quizName varchar(30),
-    quizOwner varchar(30),
-    course varchar(10) not null,
+	quizID int IDENTITY(1,1) not null,
+    quizName varchar(30) not null,
+    quizOwner varchar(30) not null,
     isPublic int default 0,
     primary key(quizID),
     foreign key(quizOwner) references Users(username)

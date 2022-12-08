@@ -83,12 +83,7 @@ public class QuizzesServlet extends HttpServlet {
 		//String setDescription = request.getParameter("quizDescription");
 		String isPublic = request.getParameter("isPublic") == null ? "false" : "true";
 		
-		// This was for testing
-		// System.out.println(setName);
-		
-		
-		
-		// Creates the flashcard
+		// Creates the quiz
 		Database database = new Database();
 		database.connect();
 		

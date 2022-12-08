@@ -15,15 +15,14 @@ public class SearchResultsQuiz extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException 
 	{
-//		Database database = new Database();
-//		database.connect();
-//				
-//		String quizName = request.getParameter("quiz_name");
-//		String quizOwner = request.getParameter("quiz_owner");
-//		
-//		// TODO: Finalize takeQuiz to view the quiz questions
+		Database database = new Database();
+		database.connect();
+				
+		String quizName = request.getParameter("quiz_name");
+		String quizOwner = request.getParameter("quiz_owner");
+
 //		ArrayList<String[]> quizzes = database.viewQuizzes(quizName, quizOwner);
-//		database.disconnect();
+		database.disconnect();
 //				
 //		request.setAttribute("quizzes", quizzes);
 	}
