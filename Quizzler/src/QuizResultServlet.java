@@ -1,4 +1,3 @@
-package Quizzler.src;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
