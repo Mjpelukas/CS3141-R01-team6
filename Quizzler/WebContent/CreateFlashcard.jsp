@@ -23,7 +23,7 @@
 				<textarea rows="5" cols="50" name="definition"
 					id="definition_"
 					placeholder="Definition"></textarea>
-				<input type="submit" value="Create" />
+				<input type="submit" name="create" value="Create" />
 			</form>
 		</div>
 		<div>

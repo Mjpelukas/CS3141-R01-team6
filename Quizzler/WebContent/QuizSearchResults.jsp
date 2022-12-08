@@ -16,8 +16,12 @@
 			 can access the parameter by the identity "quiz_name" 
  			The value which is shown to the user is set to item, which is the quiz name 
  			taken from the arraylist -->
+ 		<!-- sends name owner and id -->
 		<form method="get" action="searchedQuizView">
-			<input type="submit" value="<c:out value = "${item[0]}"/>" name="quiz_name">
+		
+			<label><input type="submit" value="<c:out value = "${item[0]}"/>" name="quiz_name">
+			<input type="hidden" name="quiz_owner" value="${item[1]}">
+			<input type="hidden" value="${item[q]}"> by 
 		</form>	
 	</c:forEach>
 	

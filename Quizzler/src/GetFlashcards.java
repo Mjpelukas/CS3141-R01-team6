@@ -108,7 +108,6 @@ public class GetFlashcards extends HttpServlet { 	//url flashcards
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//String setName = request.getParameter("set_name");
 		
 		// This gets the term, definition, setname, and username so that it has all the information needed to to an sql insert
 		String term = request.getParameter("term");
