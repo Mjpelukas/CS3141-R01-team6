@@ -43,10 +43,9 @@ create table Flashcards
 
 create table Quizzes
 (
-	quizID int IDENTITY(1,1)not null,
-    quizName varchar(30),
-    quizOwner varchar(30),
-    course varchar(10) not null,
+	quizID int AUTO_INCREMENT,
+    quizName varchar(30) not null,
+    quizOwner varchar(30) not null,
     isPublic int default 0,
     primary key(quizID),
     foreign key(quizOwner) references Users(username)

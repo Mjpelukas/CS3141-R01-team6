@@ -73,17 +73,27 @@ public class GetSetsServlet extends HttpServlet {
 		Database database = new Database();
 		database.connect();
 		
-		// TODO: Create error message for repeat set names, this is where it will be returned or thrown from
-		database.createFlashcardSet(username, setName, setDescription, isPublic);
 		
-
+			
+		if(request.getParameter("edit") != null) {
+			database.updateFlashcardSet(username, setName, setDescription, isPublic);
+			database.disconnect();
+			doGet(request,response);
+			return;
+		}
+		if(request.getParameter("create") != null) {
+			database.createFlashcardSet(username, setName, setDescription, isPublic);
+			database.disconnect();
+			doGet(request,response);
+			return;
+		}
 		
 		
 		/* 
 		 * This might not be necessary. This basically outputs a success page with a back button.
 		 * The reason we have this is so that the back button can do a get action to update the sets page.
 		 * There's a probably a way to avoid this and just update the sets page and return there, but I couldn't figure it out.
-		 */
+		 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String html = "<link rel=\"stylesheet\" type=\"text/css\" href=\"Styling/styles.css\" />\r\n"
@@ -95,7 +105,7 @@ public class GetSetsServlet extends HttpServlet {
 		+ "        </form>";
 		
 		out.println(html);
-	
+		*/
 		
 =======
 	// Returns a list of all the set names for a given user

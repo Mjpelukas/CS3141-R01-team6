@@ -114,6 +114,36 @@ public class Database {
 			return false;
 		}
 	}
+	public void updateFlashcardSet(String setName, String username, String description, String isPublic) {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        
+        try 
+        {
+            
+            // Create the SQL statement to delete the row matching the given parameters.
+            String query = "UPDATE FROM FlashcardSets "
+                    + "SET setName = '" + setName + "',"
+                    + "description = '" + description + "',"
+                    + "description = '" + description + "',"
+                    + "isPublic = " + isPublic
+                    + "WHERE setName = '" + setName + "' AND setOwner = '" + username + "';";
+
+            // Use prepared statements to prevent SQL injection.
+            //connection.createPreparedStatement().execute(query);
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(query);
+            return;
+        } 
+        catch (SQLException exception) 
+        {
+            System.out.println("SQLException: " + exception.getMessage());
+            System.out.println("SQLState: " + exception.getSQLState());
+            System.out.println("VendorError: " + exception.getErrorCode());
+            
+            return;
+        }
+    }
 	
 	public boolean createQuiz(String username, String quizName, String isPublic) {
 		try {
@@ -263,7 +293,7 @@ public class Database {
 		}
 	}
 	
-	/** NEW STUFF **/
+	/** How you view the flashcard **/
 	public ArrayList<String> viewFlashcardSets(String username) {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -597,7 +627,7 @@ public class Database {
 		try 
 		{
 			// Create the SQL query to determine whether the searched quiz is public.
-			String query = "SELECT quizName, quizOwner FROM Quizzes WHERE quizName = ? AND isPublic = 1";
+			String query = "SELECT quizName, quizOwner, quizID FROM Quizzes WHERE quizName = ? AND isPublic = 1";
 			
 			// Use prepared statements to prevent SQL injection.
 			preparedStatement = connection.prepareStatement(query);
@@ -608,7 +638,7 @@ public class Database {
 			ArrayList<String[]> quizzesList = new ArrayList<String[]>();
 			while(resultSet.next()) 
 			{
-				String[] quiz = {resultSet.getString(1), resultSet.getString(2)};
+				String[] quiz = {resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)};
 				quizzesList.add(quiz);
 			}
 			
