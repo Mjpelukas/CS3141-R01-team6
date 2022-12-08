@@ -17,7 +17,6 @@
 			<input type="button" value="Create Flashcard"
 				onclick="window.location='CreateFlashcard.jsp'">
 		</form>
-		<form>
 
 				
 	<div class="flash_container" >
@@ -32,17 +31,13 @@
 			</div >
 		</c:forEach>
 	</div>
-
-</div>			
-			
-			
-		</form>
-		<form method="get" action="sets">
+		
+					
+	<form method="get" action="sets">
 			<button name="getFlashcardSetsName"
 				style="background-color: #800003;" type="submit"
 				value="getFlashcardSets">Back</button>
-		</form>
-	</div>
-
+	</form>
+</div>	
 </body>
 </html>

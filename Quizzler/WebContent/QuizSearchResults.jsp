@@ -20,5 +20,11 @@
 			<input type="submit" value="<c:out value = "${item[0]}"/>" name="quiz_name">
 		</form>	
 	</c:forEach>
+	
+	<!-- Back button -->
+	<form method="get" action="Menu.html">
+		<button name="Back" style="background-color: #800003;" type="submit"
+			value="Back">Back</button>
+	</form>	
 </body>
 </html>
