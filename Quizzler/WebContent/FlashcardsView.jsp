@@ -21,13 +21,14 @@
 
 				
 	<div class="flash_container" >
-		<c:forEach items="${terms}" var="term">
-			<div class ="flashcard" id="flash_${term}" onclick='document.getElementById("flash_${term}").style.display = "none";
-			document.getElementById("flash_back_${term}").style.display = "inline-flex"'>
+		<c:forEach items="${terms}" var="term" varStatus="counter">
+	
+			<div class ="flashcard" id="flash_${counter.index}" onclick='document.getElementById("flash_${counter.index}").style.display = "none";
+			document.getElementById("flash_back_${counter.index}").style.display = "inline-flex"'>
 				<p > ${term[0]}</p >
 			</div >
-			<div class = "flash_back" id="flash_back_${term}" 
-			onclick='document.getElementById("flash_${term}").style.display = "inline-flex"; document.getElementById("flash_back_${term}").style.display = "none"'>
+			<div class = "flash_back" id="flash_back_${counter.index}" 
+			onclick='document.getElementById("flash_${counter.index}").style.display = "inline-flex"; document.getElementById("flash_back_${counter.index}").style.display = "none"'>
 				<p > ${term[1]} </p >
 			</div >
 		</c:forEach>
