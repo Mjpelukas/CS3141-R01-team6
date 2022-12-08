@@ -57,31 +57,7 @@ public class GetQuizQuestionsServlet extends HttpServlet {
 			System.out.println("stuff2 " + (i + 1) + ": " + stuff2.get(i));
 		}
 		
-		/*
-		$dbh = connect();
 		
-		// Set up the MySQL statement to obtain the quiz questions matching the provided quiz name and username.
-		$sqlstmt = "SELECT * from QuizQuestions ";
-		
-		// Use prepared statements to prevent SQL injection.
-		$statement = $dbh->prepare($sqlstmt . " where quizName = :quizName and username = :username");
-		$statement->bindParam(":quizName", $quizName);                            
-		$statement->bindParam(":username", $username);
-		$result = $statement->execute();
-		$questions = $statement->fetchAll();
-		
-		//
-		
-		//Set up the SQL statement to update the user's number of total guesses for this question.
-		$sqlstmt = "UPDATE Mastery SET totalGuesses = totalGuesses + 1";
-		
-		// Use prepared statements to prevent SQL injection.
-		$statement = $dbh->prepare($sqlstmt . " where quizName = :quizName and question = :question and username = :username");
-		$statement->bindParam(":quizName", $quizName);
-		$statement->bindParam(":question", $question);                             
-		$statement->bindParam(":username", $username);
-		$statement->executeUpdate();
-		*/
 	}
 
 }

@@ -10,7 +10,7 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String username = request.getParameter("login_username");
 		String password = request.getParameter("login_password");
-		
+
 		
 		
 		//this is a temporary test, assuming username is "Maxim" and password is "1234"

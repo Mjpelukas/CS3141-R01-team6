@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetSetsServlet extends HttpServlet {
 	
-	
 	// Returns a list of all the set names for a given user
 	// Doesn't actually return that information but sets the context attribute "setnames"
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -107,3 +106,4 @@ public class GetSetsServlet extends HttpServlet {
 		
 		out.println(html);
 		*/
+

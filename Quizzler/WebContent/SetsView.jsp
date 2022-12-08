@@ -33,6 +33,7 @@
 				</form>
 			</c:forEach>
 		
+		<!-- Back button -->
 		<form>
 			<input style="background-color: #800003; margin-top: 40px;"
 				type="button" value="Back" onclick="window.location='Menu.html'">

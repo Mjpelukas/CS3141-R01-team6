@@ -2,9 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import = "java.io.*,java.util.*" %>
 
-<!--- TODO: FIX THIS GARBAGE
- //PrintWriter memberPrint = request.getWriter();out.print(request.getAttribute("set_name")); 
--->
 <!DOCTYPE html>
 <html>
 	<head>

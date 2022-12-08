@@ -20,7 +20,6 @@ create table FlashcardSets
     setName varchar(30),
     setOwner varchar(30),
     description text,
-    course varchar(10),
     isPublic tinyint default 0,
     mastery int default 0,
     primary key(setName, setOwner),
@@ -43,7 +42,11 @@ create table Flashcards
 
 create table Quizzes
 (
+<<<<<<< HEAD
+	quizID int IDENTITY(1,1) not null,
+=======
 	quizID int AUTO_INCREMENT,
+>>>>>>> branch 'main' of https://github.com/Mjpelukas/CS3141-R01-team6.git
     quizName varchar(30) not null,
     quizOwner varchar(30) not null,
     isPublic int default 0,

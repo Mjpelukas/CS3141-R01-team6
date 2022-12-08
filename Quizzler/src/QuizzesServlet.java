@@ -79,7 +79,11 @@ public class QuizzesServlet extends HttpServlet {
 		//String setDescription = request.getParameter("quizDescription");
 		String isPublic = request.getParameter("isPublic") == null ? "false" : "true";
 		
+<<<<<<< HEAD
+		// Creates the quiz
+=======
 		// Creates the flashcard
+>>>>>>> branch 'main' of https://github.com/Mjpelukas/CS3141-R01-team6.git
 		Database database = new Database();
 		database.connect();
 		

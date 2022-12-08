@@ -1,3 +1,4 @@
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -108,7 +109,7 @@ public class Login {
 		}
 		
 		return false;
-	}*/
+*/
 	
 	// Creates account using database.java
 	public boolean addAccount(String susername, String spassword) {

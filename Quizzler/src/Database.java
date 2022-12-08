@@ -16,7 +16,7 @@ public class Database {
 		// inputs login info.
 		// database.authenticateLogin("[USERNAME]", "[PASSWORD]");
 		System.out.println(database.setInfo("maxim", "test1").get(0));
-		
+
 		
 		database.disconnect();
 	}
@@ -101,7 +101,7 @@ public class Database {
 		try {
 			String insert =
 					"INSERT INTO FlashcardSets values('" + setName + "', '"
-					 + username + "', '" + description + "', null, " + isPublic + ", null);";
+					 + username + "', '" + description +"'," + isPublic + ", null);";
 			
 			Statement statement = connection.prepareStatement(insert);
 			statement.execute(insert);
@@ -117,22 +117,23 @@ public class Database {
 	}
 	public void updateFlashcardSet(String oldSetName, String setName, String username, String description, String isPublic) {
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
         
         try 
         {
-            if (!(newSetName.equals(setName))) {
             // Create the SQL statement to delete the row matching the given parameters.
-            String query = "UPDATE FROM FlashcardSets " + "SET setName = '";
-            		+ setName + "',"
-                    + "description = '" + description + "',"
-                    + "isPublic = " + isPublic
-                    + "WHERE setName = '" + setName + "' AND setOwner = '" + username + "';";
+            String query = "UPDATE FROM FlashcardSets SET setName = ?," +
+                     "description = ?, isPublic = ?" 
+                    + "WHERE SetName = ? AND setOwner = ?";
 
             // Use prepared statements to prevent SQL injection.
             //connection.createPreparedStatement().execute(query);
-            Statement stmt = connection.createStatement();
-            stmt.executeUpdate(query);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, setName);
+            preparedStatement.setString(2, description);
+            preparedStatement.setString(3, isPublic);
+            preparedStatement.setString(4, oldSetName);
+            preparedStatement.setString(5, username);
+            preparedStatement.executeUpdate();
             return;
         } 
         catch (SQLException exception) 
@@ -148,8 +149,8 @@ public class Database {
 	public boolean createQuiz(String username, String quizName, String isPublic) {
 		try {
 			String insert =
-					"INSERT INTO Quizzes values('" + quizName + "', '"
-					 + username + "', null, " + isPublic + ");";
+					"INSERT INTO Quizzes(quizName, quizOwner, isPublic) VALUES('" 
+					+ quizName + "', '" + username + "', " + isPublic + ");";
 			
 			Statement statement = connection.prepareStatement(insert);
 			statement.execute(insert);
@@ -183,13 +184,10 @@ public class Database {
 			// Iterate through each flashcard's term and definition to be entered in the
 			// HTML table.
 			ArrayList<String> items = new ArrayList<String>();
-			
-			/**while (resultSet.next()) {
-				String item = resultSet.getString(1);
-				items.add(item);
-			}**/
 
+			// Advance the pointer in the result set to make the indices match.
 			resultSet.next();
+			
 			items.add(setName);
 			String description = resultSet.getString(2);
 			items.add(description);
@@ -393,183 +391,41 @@ public class Database {
 		}
 	}
 
-    // Delete a quiz provided a quiz name.
-	public boolean deleteQuiz(String quizName, String username) {
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		
-		try 
-		{
-			// Create the SQL statement to delete the row matching the given parameters.
-			String query = "DELETE FROM Quizzes WHERE quizName = ? AND setOwner = ?";
-
-			// Use prepared statements to prevent SQL injection.
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, quizName);
-			preparedStatement.setString(2, username);
-			resultSet = preparedStatement.executeQuery();
+	// Search another user's public flashcard set by set name.
+		public ArrayList<String[]> searchFlashcardSet(String setName) 
+	    {
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
 			
-			return true;
-		} 
-		catch (SQLException exception) 
-		{
-			System.out.println("SQLException: " + exception.getMessage());
-			System.out.println("SQLState: " + exception.getSQLState());
-			System.out.println("VendorError: " + exception.getErrorCode());
-			
-			return false;
-		}
-	}
-
-    // Delete a single quiz question provided a question number.
-	public boolean deleteQuizQuestion(String quizName, int questionNumber) 
-    {
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		
-		try 
-		{
-			// Create the SQL statement to delete the row matching the given parameters.
-			String query = "DELETE FROM QuizQuestions WHERE quizName = ? AND question = ?";
-
-			// Use prepared statements to prevent SQL injection.
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, quizName);
-			preparedStatement.setInt(2, questionNumber);
-			resultSet = preparedStatement.executeQuery();
-			
-			return true;
-		} 
-		catch (SQLException exception) 
-		{
-			System.out.println("SQLException: " + exception.getMessage());
-			System.out.println("SQLState: " + exception.getSQLState());
-			System.out.println("VendorError: " + exception.getErrorCode());
-			
-			return false;
-		}
-	}
-/* !UNUSED! Too complicated because why would you search by username
- * maybe one day my sweet 
-	// Search another user's list of public flashcard sets by their username.
-	public ArrayList<String> searchUserFlashcards(String setname, String username)
-	{
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		int setStringInt = 1;
-		boolean doingSets = false;
-		boolean doingUsername = false;
-		try
-		{
-			// Create the SQL query to obtain another user's list of flashcard sets if it is public.
-			String query = "SELECT setName FROM FlashcardSets WHERE isPublic = 1";
-			if(setname != null){
-				 query += "and setName = ?";
-				 doingSets = true;
-			}
-			if(username != null){
-				 query += "and setOwner = ?";
-				 doingUsername = true;
-				 
-			}
-			// Use prepared statements to prevent SQL injection.
-			preparedStatement = connection.prepareStatement(query);
-			if(doingSets) {
-				preparedStatement.setString(setStringInt, setname);
-				setStringInt++;
-			}
-			if(doingUsername) {
-				preparedStatement.setString(setStringInt, username);
-			}
-			
-			resultSet = preparedStatement.executeQuery();
-			
-			// Iterate through each set name to be shown on the website.
-			ArrayList<String> sets = new ArrayList<String>();
-			while (resultSet.next())
-				sets.add(resultSet.getString(1));
-			
-			return sets;
-		}
-		catch (SQLException exception) 
-		{
-			System.out.println("SQLException: " + exception.getMessage());
-			System.out.println("SQLState: " + exception.getSQLState());
-			System.out.println("VendorError: " + exception.getErrorCode());
-			
-			return null;
-		}
-	}
-*/ //@UNUSED! Too complicated because why would you search by username
-/*	// Search another user's list of public quizzes by their username.
-	public ArrayList<String> searchUserQuizzes(String username)
-	{
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-
-		try
-		{
-			// Create the SQL query to obtain another user's list of quizzes.
-			String query = "SELECT quizName FROM Quizzes WHERE quizOwner = ? AND isPublic = 1";
-			
-			// Use prepared statements to prevent SQL injection.
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, username);
-			resultSet = preparedStatement.executeQuery();
-			
-			// Iterate through each quiz name to be shown on the website.
-			ArrayList<String> quizzes = new ArrayList<String>();
-			while (resultSet.next())
-				quizzes.add(resultSet.getString(1));
-			
-			return quizzes;
-		}
-		catch (SQLException exception) 
-		{
-			System.out.println("SQLException: " + exception.getMessage());
-			System.out.println("SQLState: " + exception.getSQLState());
-			System.out.println("VendorError: " + exception.getErrorCode());
-			
-			return null;
-		}
-	}
-*/
-    // Search another user's public flashcard set by set name.
-	public ArrayList<String[]> searchFlashcardSet(String setName) 
-    {
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		
-		try 
-		{
-			// Create the SQL query to obtain the searched flashcard set.
-			String query = "SELECT setName, setOwner FROM FlashcardSets WHERE setName = ? AND isPublic = 1";
-			
-			// Use prepared statements to prevent SQL injection.
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, setName);
-			resultSet = preparedStatement.executeQuery();
-
-			// Return a list of the flashcard set names that match the search query.
-			ArrayList<String[]> flashcardSetsList = new ArrayList<String[]>();
-			while(resultSet.next()) 
+			try 
 			{
-				String[] flashcardSet = {resultSet.getString(1), resultSet.getString(2)};
-				flashcardSetsList.add(flashcardSet);
-			}
-			
-			return flashcardSetsList;
-		} 
-		catch (SQLException exception) 
-		{
-			System.out.println("SQLException: " + exception.getMessage());
-			System.out.println("SQLState: " + exception.getSQLState());
-			System.out.println("VendorError: " + exception.getErrorCode());
-			
-			return null;
-		}
-	}
+				// Create the SQL query to obtain the searched flashcard set.
+				String query = "SELECT setName, setOwner FROM FlashcardSets WHERE setName = ? AND isPublic = 1";
+				
+				// Use prepared statements to prevent SQL injection.
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setString(1, setName);
+				resultSet = preparedStatement.executeQuery();
 
+				// Return a list of the flashcard set names that match the search query.
+				ArrayList<String[]> flashcardSetsList = new ArrayList<String[]>();
+				while(resultSet.next()) 
+				{
+					String[] flashcardSet = {resultSet.getString(1), resultSet.getString(2)};
+					flashcardSetsList.add(flashcardSet);
+				}
+				
+				return flashcardSetsList;
+			} 
+			catch (SQLException exception) 
+			{
+				System.out.println("SQLException: " + exception.getMessage());
+				System.out.println("SQLState: " + exception.getSQLState());
+				System.out.println("VendorError: " + exception.getErrorCode());
+				
+				return null;
+			}
+	    }
 	// Search for another user's public quiz by quiz name.
 	public ArrayList<String[]> searchQuiz(String quizName) 
     {
@@ -609,67 +465,6 @@ public class Database {
 	//temporary to prevent errors
 	public void takeQuiz(String one, String two){}
 	
-	
-/*	// Search for another user's flashcard set by its description.
-	// Fuzzy Search: SELECT * FROM `TABLE` WHERE MATCH(`COLUMN`) AGAINST("SEARCH" IN NATURAL LANGUAGE MODE);
-	public boolean searchFlashcardSetDescription(String description)
-	{
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
- 	try 
-		{
-			// Create the SQL query to perform a fuzzy search of the flashcard set's description.
-			String query = "SELECT setName, username FROM FlashcardSets WHERE MATCH('setName') AGAINST(? IN NATURAL LANGUAGE MODE) AND isPublic = 1";
-		// 		// Use prepared statements to prevent SQL injection.
-			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, description);
-			resultSet = preparedStatement.executeQuery();
- 		// View the flashcard set if it exists.
- 		if(resultSet != null)
- 			viewFlashcardSet(resultSet.getString(1), resultSet.getString(2));
- 		return true;
-	} 
-	catch (SQLException exception) 
- 	{
- 		System.out.println("SQLException: " + exception.getMessage());
- 		System.out.println("SQLState: " + exception.getSQLState());
-		System.out.println("VendorError: " + exception.getErrorCode());
- 		return false;
- 	}
- }
-
- // Search for another user's quiz by its description.
- // Fuzzy Search: SELECT * FROM `TABLE` WHERE MATCH(`COLUMN`) AGAINST("SEARCH" IN NATURAL LANGUAGE MODE);
-	public boolean searchQuizDescription(String description)
-	{
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-	 	try 
-		{
-	 		// Create the SQL query to perform a fuzzy search of the quiz's description.
-	 		String query = "SELECT quizName, username FROM Quizzes WHERE MATCH('quizName') AGAINST(? IN NATURAL LANGUAGE MODE) AND isPublic = 1";
-	
-	 		// Use prepared statements to prevent SQL injection.
-	 		preparedStatement = connection.prepareStatement(query);
-	 		preparedStatement.setString(1, description);
-	 		resultSet = preparedStatement.executeQuery();
-	 		
-	 		// Take the quiz if it exists.
-	 		if(resultSet != null)
-	 			takeQuiz(resultSet.getString(1), resultSet.getString(2));
-
-	 		return true;
-	 	} 
-	 	catch (SQLException exception) 
-	 	{
-	 		System.out.println("SQLException: " + exception.getMessage());
-	 		System.out.println("SQLState: " + exception.getSQLState());
-			System.out.println("VendorError: " + exception.getErrorCode());
-			
-	 		return false;
-	 	}
-	 }
-	*/ 
 	public ArrayList<int[]> masteryQuery(String Username, String quizName) 
     {
 		PreparedStatement preparedStatement = null;
@@ -698,6 +493,164 @@ public class Database {
 			return masteryList;
 		}catch (SQLException exception) 
 		{
+		System.out.println("SQLException: " + exception.getMessage());
+		System.out.println("SQLState: " + exception.getSQLState());
+		System.out.println("VendorError: " + exception.getErrorCode());
+		
+		return null;
+	}
+}
+
+	
+	/**
+	 * TODO: ACTUALLY BOTH TO EXPLAIN THIS STUFF. CBA RN, NEED THIS DONE
+	 * 
+	 * @param quizOwner
+	 * @param quizName
+	 * @return - the ArrayList of quiz questions for the relevant quiz
+	 */
+	public ArrayList<String[]> viewQuizQuestions(String quizOwner, String quizName) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			// Determine the MySQL statement to obtain the rows matching the provided set
+			// name and username.
+			String query = "SELECT quizQuestion, choiceA, choiceB, choiceC, choiceD, answer from QuizQuestions where quizOwner = ?, quizName = ?";
+			
+			// Use prepared statements to prevent SQL injection.
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, quizOwner);
+			preparedStatement.setString(1, quizName);
+			resultSet = preparedStatement.executeQuery();
+			
+			// Iterate through each flashcard set's name and add it to the arraylist
+			ArrayList<String[]> quizQuestions = new ArrayList<String[]>();
+			
+			while (resultSet.next()) {
+				String quizQuestion = resultSet.getString(1);
+				String choiceA = resultSet.getString(2);
+				String choiceB = resultSet.getString(3);
+				String choiceC = resultSet.getString(4);
+				String choiceD = resultSet.getString(5);
+				//char answer = resultSet.get
+				String answer = resultSet.getString(6);
+				
+				String[] question = {quizQuestion, choiceA, choiceB, choiceC, choiceD, answer};
+				quizQuestions.add(question);
+			}
+			
+			return quizQuestions;
+		} catch (SQLException exception) {
+			System.out.println("SQLException: " + exception.getMessage());
+			System.out.println("SQLState: " + exception.getSQLState());
+			System.out.println("VendorError: " + exception.getErrorCode());
+			
+			return null;
+		}
+	}
+	
+
+    // Delete a quiz provided a quiz name.
+	public boolean deleteQuiz(String quizName, String username) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			// Create the SQL statement to delete the row matching the given parameters.
+			String query = "DELETE FROM Quizzes WHERE quizName = ? AND setOwner = ?";
+			
+			// Use prepared statements to prevent SQL injection.
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, quizName);
+			preparedStatement.setString(2, username);
+			resultSet = preparedStatement.executeQuery();
+			
+			return true;
+		} catch (SQLException exception) {
+			System.out.println("SQLException: " + exception.getMessage());
+			System.out.println("SQLState: " + exception.getSQLState());
+			System.out.println("VendorError: " + exception.getErrorCode());
+			
+			return false;
+		}
+	}
+	
+    // Delete a single quiz question provided a question number.
+	public boolean deleteQuizQuestion(String quizName, int questionNumber) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			// Create the SQL statement to delete the row matching the given parameters.
+			String query = "DELETE FROM QuizQuestions WHERE quizName = ? AND question = ?";
+
+			// Use prepared statements to prevent SQL injection.
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, quizName);
+			preparedStatement.setInt(2, questionNumber);
+			resultSet = preparedStatement.executeQuery();
+			
+			return true;
+		} catch (SQLException exception) {
+			System.out.println("SQLException: " + exception.getMessage());
+			System.out.println("SQLState: " + exception.getSQLState());
+			System.out.println("VendorError: " + exception.getErrorCode());
+			
+			return false;
+		}
+	}
+	
+	// Search another user's list of public flashcard sets by their username.
+	public ArrayList<String> searchUserFlashcards(String username) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			// Create the SQL query to obtain another user's list of flashcard sets if it is public.
+			String query = "SELECT setName FROM FlashcardSets WHERE setOwner = ? AND isPublic = 1";
+			
+			// Use prepared statements to prevent SQL injection.
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, username);
+			resultSet = preparedStatement.executeQuery();
+			
+			// Iterate through each set name to be shown on the website.
+			ArrayList<String> sets = new ArrayList<String>();
+			while (resultSet.next())
+				sets.add(resultSet.getString(1));
+			
+			return sets;
+		} catch (SQLException exception) {
+			System.out.println("SQLException: " + exception.getMessage());
+			System.out.println("SQLState: " + exception.getSQLState());
+			System.out.println("VendorError: " + exception.getErrorCode());
+			
+			return null;
+		}
+	}
+	
+	// Search another user's list of public quizzes by their username.
+	public ArrayList<String> searchUserQuizzes(String username) {
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+
+		try {
+			// Create the SQL query to obtain another user's list of quizzes.
+			String query = "SELECT quizName FROM Quizzes WHERE setOwner = ? AND isPublic = 1";
+			
+			// Use prepared statements to prevent SQL injection.
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, username);
+			resultSet = preparedStatement.executeQuery();
+			
+			// Iterate through each quiz name to be shown on the website.
+			ArrayList<String> quizzes = new ArrayList<String>();
+			while (resultSet.next())
+				quizzes.add(resultSet.getString(1));
+			
+			return quizzes;
+		} catch (SQLException exception) {
 			System.out.println("SQLException: " + exception.getMessage());
 			System.out.println("SQLState: " + exception.getSQLState());
 			System.out.println("VendorError: " + exception.getErrorCode());
@@ -706,4 +659,28 @@ public class Database {
 		}
 	}
 
+ 
+	
+		
+	/**
+	 * Simple code for inserting a quiz into the database.
+	 * 
+	 * @return if the quiz was successfully created or not
+	 */
+	public boolean createQuiz(String quizName, String username, String course, String isPublic) {
+		String sqlstmt = "INSERT INTO Quizzes values(quizName, username, course, isPublic)";
+		Statement statement;
+		
+		try {
+			statement = connection.prepareStatement(sqlstmt);
+			statement.execute(sqlstmt);
+			
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+			return false;
+		}
+	}
+	
 }

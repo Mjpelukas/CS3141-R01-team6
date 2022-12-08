@@ -18,15 +18,14 @@
 
 			<label for="setDescription">Description (Optional)</label>	
 			<textarea rows="5" cols="50" name="setDescription"
-				id="set_description" >
-				<c:out value = "${description}"/>
-			</textarea>
+				id="set_description" ><c:out value="${description}"/></textarea>
 			
 			<label>
       			Public <input type="checkbox" name="isPublic" value="true"/>
     		</label>
 			<br>
 			<input type="submit" name="edit" value="Submit Changes" />
+
 		</form>
 	</div>
 	<div>
