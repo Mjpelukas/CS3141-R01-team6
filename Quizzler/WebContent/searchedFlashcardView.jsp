@@ -1,4 +1,4 @@
- <%@page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -26,12 +26,11 @@
 		</c:forEach>
 	</div>
 
-		<form method="get" action="sets">
-			<button name="getFlashcardSetsName"
-				style="background-color: #800003;" type="submit"
-				value="home">Back</button>
-		</form>
-	</div>
-
+	<!-- Back button -->
+	<form method="get" action="Menu.html">
+		<button name="Back" style="background-color: #800003;" type="submit"
+				value="Back">Back</button>
+	</form>	
+</div>	
 </body>
 </html>

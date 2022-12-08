@@ -21,6 +21,12 @@
 			<input type="submit" value="<c:out value = "${item[0]}"/>" name="set_name">
 			<input type="hidden" value="<c:out value = "${item[1]}"/>" name="set_owner">
 		</form>	
-	</c:forEach>	
+	</c:forEach>
+	
+	<!-- Back button -->
+	<form method="get" action="Menu.html">
+		<button name="Back" style="background-color: #800003;" type="submit"
+			value="Back">Back</button>
+	</form>	
 </body>
 </html>

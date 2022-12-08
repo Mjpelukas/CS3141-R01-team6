@@ -82,6 +82,7 @@
     <servlet-name>searchResultsFlashcards</servlet-name>
     <url-pattern>/searchedFlashcardView</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>searchResultsQuizzes</servlet-name>
     <servlet-class>SearchResultsQuiz</servlet-class>
