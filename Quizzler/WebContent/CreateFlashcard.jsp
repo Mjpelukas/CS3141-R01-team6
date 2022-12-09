@@ -24,10 +24,11 @@
 			</form>
 		</div>
 		<div>
-			<form method="get" action="sets">
+			<form method="get" action="flashcards">
 				<button style="background-color: #800003;"
-					name="createFlashcardCancel" type="submit" value="createCancel">Cancel</button>
+				name="set_name" type="submit" value="getFlashcards">Cancel</button>
 			</form>
+		</div>
 		</div>
 	</body>
 </html>

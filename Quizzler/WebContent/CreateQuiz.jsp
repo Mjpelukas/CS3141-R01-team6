@@ -22,9 +22,9 @@
 	</div>
 	
 	<!-- Back button -->
-	<form method="get" action="Menu.html">
-		<button name="Back" style="background-color: #800003;" type="submit"
-			value="Back">Cancel</button>
-	</form>	
+	<form method="get" action="quizzes">
+        	<button style="background-color: #800003;"
+        		name="getFlashcardSetsName" type="submit" value="getFlashcardSets">Cancel</button>
+        </form>
 	</body>
 </html>
