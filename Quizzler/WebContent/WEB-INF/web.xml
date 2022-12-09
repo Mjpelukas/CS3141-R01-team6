@@ -19,7 +19,7 @@
     <servlet-name>loginForm</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
-
+  
   <servlet>
     <servlet-name>accountCreatedForm</servlet-name>
     <servlet-class>AccountCreationServlet</servlet-class>
@@ -55,8 +55,9 @@
     <servlet-name>deleteSets</servlet-name>
     <url-pattern>/deleteSet</url-pattern>
   </servlet-mapping>
+
   
-    <servlet>
+  <servlet>
     <servlet-name>quizzes</servlet-name>
     <servlet-class>QuizzesServlet</servlet-class>
   </servlet>
@@ -65,6 +66,15 @@
     <url-pattern>/quizzes</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>quizQuestions</servlet-name>
+    <servlet-class>GetQuizServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>quizQuestions</servlet-name>
+    <url-pattern>/QuizQuestions</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <servlet-name>takeQuiz</servlet-name>
     <servlet-class>TakeQuizServlet</servlet-class>
@@ -81,15 +91,6 @@
   <servlet-mapping>
     <servlet-name>quizResults</servlet-name>
     <url-pattern>/GetQuizResults</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>quizQuestions</servlet-name>
-    <servlet-class>GetQuizServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>quizQuestions</servlet-name>
-    <url-pattern>/QuizQuestions</url-pattern>
   </servlet-mapping>
   
   <servlet>
