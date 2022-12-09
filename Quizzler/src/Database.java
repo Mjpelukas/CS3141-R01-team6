@@ -102,7 +102,7 @@ public class Database {
 			String insert =
 					//TODO Remove the null
 					"INSERT INTO FlashcardSets values('" + setName + "', '"
-					 + username + "', '" + description +"',null," + isPublic + ", null);";
+					 + username + "', '" + description +"'," + isPublic + ", null);";
 			
 			Statement statement = connection.prepareStatement(insert);
 			statement.execute(insert);
@@ -123,7 +123,7 @@ public class Database {
         {
             // Create the SQL statement to delete the row matching the given parameters.
             String query = "UPDATE FROM FlashcardSets SET setName = ?," +
-                     "description = ?, isPublic = ?" 
+                     "description = ?, isPublic = "+ isPublic 
                     + "WHERE SetName = ? AND setOwner = ?";
 
             // Use prepared statements to prevent SQL injection.
@@ -131,9 +131,8 @@ public class Database {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, setName);
             preparedStatement.setString(2, description);
-            preparedStatement.setString(3, isPublic);
-            preparedStatement.setString(4, oldSetName);
-            preparedStatement.setString(5, username);
+            preparedStatement.setString(3, oldSetName);
+            preparedStatement.setString(4, username);
             preparedStatement.executeUpdate();
             return;
         } 
