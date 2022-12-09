@@ -40,7 +40,7 @@ public class GetFlashcards extends HttpServlet { 	//url flashcards
 			database.connect();
 
 			ArrayList<String> setInfo = database.setInfo(setName, username);
-			
+			database.disconnect();
 			request.setAttribute("setName", setInfo.get(0));
 			request.setAttribute("description", setInfo.get(1));
 			//request.setAttribute("isPublic", setInfo.get(2));
@@ -94,6 +94,7 @@ public class GetFlashcards extends HttpServlet { 	//url flashcards
 		
 		// Sets the terms attribute to the arraylist of string arrays so that it can be accessed by teh front end
 		request.setAttribute("terms", terms);
+		request.setAttribute("set_name",setName);
 		try {
 			// Sends to the next website. The request and response are forwarded so that the attributes stay
 			// (I'm only pretty sure that's how that works)

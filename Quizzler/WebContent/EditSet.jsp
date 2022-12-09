@@ -12,8 +12,9 @@
 <body class="body">
 	<div>
 		<form method="post" action="sets">
+			<input type="hidden" name="ogSetName" value ="${setName}"> 
 			<label>Change Set Name(Optional)</label>
-			<input name="setName" type="text" id="set_name"
+			<input name="setName" type="text" id="set_name" value="${setName}"
 			 placeholder= "${setName}" /> 
 
 			<label for="setDescription">Description (Optional)</label>	

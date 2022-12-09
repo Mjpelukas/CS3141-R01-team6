@@ -14,7 +14,7 @@ public class GetSetsServlet extends HttpServlet {
 		
 		// Get the session username
 		String username = (String) getServletContext().getAttribute("username");
-		
+		request.setAttribute("currentUser",username);
 		// Use that database to get the list of set names 
 		Database database = new Database();
 		database.connect();
@@ -74,7 +74,7 @@ public class GetSetsServlet extends HttpServlet {
 		
 			
 		if(request.getParameter("edit") != null) {
-			String oldSetName = request.getParameter("oldSetName");
+			String oldSetName = request.getParameter("ogSetName");
 			database.updateFlashcardSet(oldSetName, setName, username, setDescription, isPublic);
 			database.disconnect();
 			doGet(request,response);

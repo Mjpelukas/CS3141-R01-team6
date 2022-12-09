@@ -103,7 +103,6 @@ public class Database {
 					//TODO Remove the null
 					"INSERT INTO FlashcardSets values('" + setName + "', '"
 					 + username + "', '" + description +"'," + isPublic + ", null);";
-			
 			Statement statement = connection.prepareStatement(insert);
 			statement.execute(insert);
 			
@@ -122,9 +121,9 @@ public class Database {
         try 
         {
             // Create the SQL statement to delete the row matching the given parameters.
-            String query = "UPDATE FROM FlashcardSets SET setName = ?," +
+            String query = "UPDATE FlashcardSets SET setName = ?," +
                      "description = ?, isPublic = "+ isPublic 
-                    + "WHERE SetName = ? AND setOwner = ?";
+                    + " WHERE SetName = ? AND setOwner = ?";
 
             // Use prepared statements to prevent SQL injection.
             //connection.createPreparedStatement().execute(query);

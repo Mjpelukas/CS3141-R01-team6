@@ -5,6 +5,12 @@
 	padding:0;
 }
 
+.currentUser{
+	text-align: right;
+	color: blue;
+	right: 3em;
+	margin: 0.5em;
+}
 
 table {
 	visibility: visible;
@@ -232,4 +238,9 @@ form > label{
 	font-family: Arial, sans-serif;
 	font-size: 24px;
 	margin: 0;
+}
+
+.createQuestion{
+	background-color: #008000;
+	left: 30 px;
 }
