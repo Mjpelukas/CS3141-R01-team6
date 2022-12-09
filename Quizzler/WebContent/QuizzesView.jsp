@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
+
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="Styling/styles.css" />
@@ -23,13 +23,14 @@
 				<!-- the name for each button is set_name so that when it's submitted, the servlet
 				     can access the parameter by the identity "set_name" 
  				     The value which is shown to the user is set to item, which is the set name taken from the arraylist -->
-				<form method="get" action="quizQuestions">
+				<form method="get" action="takeQuiz">
 				<input type="submit" value="<c:out value = "${item}"/>" name="quiz_name">
 				
 				<button 
 					style="background-color: #770000; width: 30px; height: 30px; padding: 0;" 
 					type="submit" value="<c:out value = "${item}"/>" name="delete">x</button><br>
-				
+				</form>
+				<form method="get" action="QuizQuestions">
 				<button type="submit" class="createQuestion"  name="createQuestion"
 					value="<c:out value = "${item}"/>">Create A Question For This Quiz</button>
 				</form>

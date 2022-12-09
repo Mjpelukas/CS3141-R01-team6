@@ -1,17 +1,12 @@
-package Quizzler.src;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class GetQuizServlet extends HttpServlet {
-	
+	//    ."/QuizQuestions"
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
-		Database database = new Database();
-		database.connect();
-		
-		//TODO:
-		
-		database.disconnect();
+		String quizID = request.getParameter("quizID");
+		request.setAttribute("QID", quizID);
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
@@ -19,6 +14,7 @@ public class GetQuizServlet extends HttpServlet {
 		String username = (String) getServletContext().getAttribute("username");
 		String courseText = request.getParameter("courseText");
 		
+		/*
 		//if (!request.getParameter("visibility").equals(null)) {
 		if (request.getParameter("visibility") != null) {
 			Database database = new Database();
@@ -32,11 +28,14 @@ public class GetQuizServlet extends HttpServlet {
 			//database.createQuiz(username, quizName, isPublic);
 			database.createQuiz(username, quizName, publicChoice);	
 		}
+		*/
 		
 		Database database = new Database();
 		database.connect();
 		
 		//what happens?
+		
+		//connect to CreateQuizQuestion.jsp
 		
 		database.disconnect();
 	}

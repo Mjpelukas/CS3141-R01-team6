@@ -14,19 +14,18 @@
 	</head>
 	<h1 class="title">Create a Quiz Question</h1>
 	<!-- $set_name doesnt place -->
-	<h3 class="member_set">${set_name}</h3>
 	<body class="body">
 		<div>
 			<form method="post" action="Quizzes">
 			<input type="hidden" name="creationType" value="question">
-				<input name="term" type="text" id="term_name"
-					placeholder="Question" />
-				<input name="choiceA" type="text" placeholder="A" />
-				<input name="choiceB" type="text" placeholder="B" />
-				<input name="choiceC" type="text" placeholder="C" />
-				<input name="choiceD" type="text" placeholder="D" />
+					Enter The Question Prompt Here:
+				<textarea name="prompt"/></textarea>	
+				<input name="choiceA" type="text" placeholder="Choice A" />
+				<input name="choiceB" type="text" placeholder="Choice B" />
+				<input name="choiceC" type="text" placeholder="Choice C" />
+				<input name="choiceD" type="text" placeholder="Choice D" />
 				<label for="answer">Enter Correct Answer Choice</label>
-				<input name="answer" type="text" placeholder="" />
+				<input name="answer" type="text" maxlength="1" />
 				<input type="submit" value="Create" />
 			</form>
 		</div>
