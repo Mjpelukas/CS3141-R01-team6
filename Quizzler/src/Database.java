@@ -100,8 +100,9 @@ public class Database {
 	public boolean createFlashcardSet(String username, String setName, String description, String isPublic) {
 		try {
 			String insert =
+					//TODO Remove the null
 					"INSERT INTO FlashcardSets values('" + setName + "', '"
-					 + username + "', '" + description +"'," + isPublic + ", null);";
+					 + username + "', '" + description +"',null," + isPublic + ", null);";
 			
 			Statement statement = connection.prepareStatement(insert);
 			statement.execute(insert);
