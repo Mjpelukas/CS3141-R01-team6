@@ -33,10 +33,12 @@ public class QuizzesServlet extends HttpServlet {
 		// Use that database to get the list of set names 
 		Database database = new Database();
 		database.connect();
-		ArrayList<String> quizNames = database.viewQuizzes(username);
+		ArrayList<String[]> quizNames = database.viewQuizzes(username);
+		
 		
 		// Set the attribute so that the front end can access the set names 
 		request.setAttribute("quizNames", quizNames);
+		
 		database.disconnect();
 		
 		try {
@@ -85,9 +87,22 @@ public class QuizzesServlet extends HttpServlet {
 		database.connect();
 		
 		// TODO: Create error message for repeat set names, this is where it will be returned or thrown from
-		database.createQuiz(username, quizName, isPublic);
-		getServletContext().setAttribute("quizName", quizName);
-		
+		if (request.getParameter(creationType).equals("blanketQuiz")) {
+			database.createQuiz(username, quizName, isPublic);
+			getServletContext().setAttribute("quizName", quizName);
+		}
+		if (request.getParameter("creationType").equals("question")) {
+			String quizID = request.getParameter("quizID");
+			String prompt = request.getParameter("prompt");
+			String answer = request.getParameter("answer");
+			String choiceA = request.getParameter("choiceA");
+			String choiceB = request.getParameter("choiceB");
+			String choiceC = request.getParameter("choiceC");
+			String choiceD = request.getParameter("choiceD");
+			//createQuizQuestion(String quizID, String prompt, String answer, String choiceA, String choiceB, String choiceC, String choiceD)
+			database.createQuizQuestion(quizID, prompt, answer, choiceA, choiceB, choiceC, choiceD);
+			database.disconnect();
+		}
 		/* 
 		 * This might not be necessary. This basically outputs a success page with a back button.
 		 * The reason we have this is so that the back button can do a get action to update the sets page.

@@ -275,7 +275,7 @@ public class Database {
 		}
 	}
 	
-	public ArrayList<String> viewQuizzes(String username) {
+	public ArrayList<String[]> viewQuizzes(String username) {
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 		
@@ -290,11 +290,13 @@ public class Database {
 			resultSet = preparedStatement.executeQuery();
 			
 			// Iterate through each flashcard set's name and add it to the arraylist
-			ArrayList<String> quizNames = new ArrayList<String>();
+			ArrayList<String[]> quizNames = new ArrayList<String[]>();
 			
 			while (resultSet.next()) {
 				String quizName = resultSet.getString(1);
-				quizNames.add(quizName);
+				String quizID = resultSet.getString(2);
+				String[] quiz = {quizName, quizID};
+				quizNames.add(quiz);
 			}
 			
 			return quizNames;
@@ -462,7 +464,40 @@ public class Database {
 	}
 	
 	//temporary to prevent errors
-	public void takeQuiz(String one, String two){}
+	public ArrayList<String[]> takeQuiz(String quizID){
+		
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try 
+		{
+			// Create the SQL query to determine whether the searched quiz is public.
+			String query = "SELECT questionID, prompt, answer, choiceA, choiceB, choiceC, choiceD"+
+			"FROM QuizQuestions WHERE quizID =" + quizID;
+			
+			// Use prepared statements to prevent SQL injection.
+			preparedStatement = connection.prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+
+			ArrayList<String[]> quizQuestions = new ArrayList<String[]>();
+			
+			while (resultSet.next()) {
+				String questionID = resultSet.getString(1), prompt = resultSet.getString(2), answer=resultSet.getString(3);
+				String choiceA = resultSet.getString(4), choiceB = resultSet.getString(5), choiceC = resultSet.getString(6), choiceD = resultSet.getString(7);
+				String[] question = {questionID, prompt, answer, choiceA, choiceB, choiceC, choiceD};
+				quizQuestions.add(question);
+			}
+			
+			return quizQuestions;
+		}catch (SQLException exception) 
+		{
+		System.out.println("SQLException: " + exception.getMessage());
+		System.out.println("SQLState: " + exception.getSQLState());
+		System.out.println("VendorError: " + exception.getErrorCode());
+		
+		return null;
+		}
+	}
 	
 	public ArrayList<int[]> masteryQuery(String Username, String quizName) 
     {
@@ -681,5 +716,33 @@ public class Database {
 			return false;
 		}
 	}
-	
+	public boolean createQuizQuestion(String quizID,  String prompt, 
+            String answer, String choiceA, String choiceB, String choiceC, String choiceD)
+{
+    PreparedStatement preparedStatement = null;
+
+    try {
+        // Create the SQL statement to delete the row matching the given parameters.
+        String query = "INSERT INTO QuizQuestions VALUES(?,?, ?, ? , ?,?,?)";
+
+        // Use prepared statements to prevent SQL injection.
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, quizID);
+        preparedStatement.setString(2, prompt);
+        preparedStatement.setString(3, answer);
+        preparedStatement.setString(4, choiceA);
+        preparedStatement.setString(5, choiceB);
+        preparedStatement.setString(6, choiceC);
+        preparedStatement.setString(7, choiceD);
+        resultSet = preparedStatement.executeQuery();
+
+        return true;
+    } catch (SQLException exception) {
+        System.out.println("SQLException: " + exception.getMessage());
+        System.out.println("SQLState: " + exception.getSQLState());
+        System.out.println("VendorError: " + exception.getErrorCode());
+
+        return false;
+    }
+}
 }

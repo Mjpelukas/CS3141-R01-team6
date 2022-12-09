@@ -24,15 +24,16 @@
 				     can access the parameter by the identity "set_name" 
  				     The value which is shown to the user is set to item, which is the set name taken from the arraylist -->
 				<form method="get" action="takeQuiz">
-				<input type="submit" value="<c:out value = "${item}"/>" name="quiz_name">
+				<button type="submit" value="<c:out value ="${item[1]}"/>" name="quiz_name">
+				${item[0]}</button>
 				
 				<button 
 					style="background-color: #770000; width: 30px; height: 30px; padding: 0;" 
-					type="submit" value="<c:out value = "${item}"/>" name="delete">x</button><br>
+					type="submit" value="<c:out value = "${item[1]}"/>" name="delete">x</button><br>
 				</form>
 				<form method="get" action="QuizQuestions">
 				<button type="submit" class="createQuestion"  name="createQuestion"
-					value="<c:out value = "${item}"/>">Create A Question For This Quiz</button>
+					value="<c:out value = "${item[1]}"/>">Create A Question For This Quiz</button>
 				</form>
 			</c:forEach>
 		

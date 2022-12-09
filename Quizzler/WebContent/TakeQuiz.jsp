@@ -5,34 +5,34 @@
 <html>
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Insert title here</title>
+		<title>Take Your Quiz</title>
 	</head>
 	<body>
-		<form method="post" action="TODO THERE NEEDS TO BE AN ACTION HERE TO WORK" >
+		<form method="post" action="GetQuizResults" >
 			<%
 			//PrintWriter out = new PrintWriter();
 			%>
-			<!-- TODO: TEMPORARY forEach FOR LATER FORMATTING USE
-			<c:forEach items="${setNames}" var="item">
-				<input type="submit" value="<c:out value = "${item}"/>" name="set_name"><br>
-			</c:forEach>
-			-->
-			<c:forEach items="${quizQuestions}" var="question">
+			<input type="hidden" name="quizID" value="${QID}">
+			<input type="hidden" name="size" value="${QSIZE}">
+			<!-- TODO: remove answer from the fields and just have it pull from the question id in servlet-->
+			<!-- TODO: [qid, prompt, answ, a, b, c, d] -->
+			<c:forEach items="${quizQuestions}" var="question" varStatus="">
 				
 				<%
 				// Display the current question with its corresponding prompt.
                 //out.println("<p>$question['question']. $question['prompt']</p>");
 				%>
 				
-				<!-- TODO: COMMENT EXPLAING THIS HERE -->
-				<tr id="${question}">
-					<td><c:out value="${question[0]}" /></td>
+				<!-- TODO: [ -->
+				<tr id="${question[0]}">
+					<td><c:out value="${question[1]}" /><br>
+					<input type="hidden" name="${question[0]}_answer" value="${QSIZE}">
 					<!-- these are the 4 options to choose from -->
 					<!-- TODO: ADD IN SOME KIND OF TEXT FOR NAMES OF THE CHOICES (a, b, c, d) -->
-					<td><input type="radio" name="${question}_one" value="${question[1]}" /></td>
-					<td><input type="radio" name="${question}_two" value="${question[2]}" /></td>
-					<td><input type="radio" name="${question}_three" value="${question[3]}" /></td>
-					<td><input type="radio" name="${question}_four" value="${question[4]}" /></td>
+					<label><input type="radio" name="${question[0]}" value="A" />${question[3]}}</label>
+					<label><input type="radio" name="${question[0]}" value="B" />${question[4]}</label>
+					<label><input type="radio" name="${question[0]}" value="C" />${question[5]}</label>
+					<label><input type="radio" name="${question[0]}" value="D" />${question[6]}</label></td>
 					
 					<!-- the answer obviously doesn't get printed out, this will be used later -->
 					<!-- <td><c:out value="${question[5]}" /></td> -->
@@ -40,7 +40,7 @@
 			</c:forEach>
 			
 			<!-- TODO: WE NEED RELATED .xml CODE IN ORDER TO GET THIS TO WORK, USING VALUE "getQuizResult" -->
-			<button type="submit" value="submitAnswer">Submit Quiz</button>
+			<button type="submit" value="submitAnswers">Submit Quiz</button>
 		</form>
 	</body>
 

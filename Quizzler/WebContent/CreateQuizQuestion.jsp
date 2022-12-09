@@ -18,7 +18,8 @@
 		<div>
 			<form method="post" action="Quizzes">
 			<input type="hidden" name="creationType" value="question">
-					Enter The Question Prompt Here:
+			<input type="hidden" name="quizID" value="${QID}">
+					<label>Enter The Question Prompt Here:</label>
 				<textarea name="prompt"/></textarea>	
 				<input name="choiceA" type="text" placeholder="Choice A" />
 				<input name="choiceB" type="text" placeholder="Choice B" />
