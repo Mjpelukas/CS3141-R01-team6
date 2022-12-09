@@ -282,7 +282,7 @@ public class Database {
 		try {
 			// Determine the MySQL statement to obtain the rows matching the provided set
 			// name and username.
-			String query = "SELECT quizName from Quizzes where quizOwner = ?";
+			String query = "SELECT quizName, quizID from Quizzes where quizOwner = ?";
 			
 			// Use prepared statements to prevent SQL injection.
 			preparedStatement = connection.prepareStatement(query);
